@@ -1,0 +1,43 @@
+buildscript {
+    ext {
+	springBootVersion = '1.5.3.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+	classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        classpath('io.spring.gradle:dependency-management-plugin:1.0.2.RELEASE')
+    }
+}
+
+subprojects {
+
+	apply plugin: 'java'
+	apply plugin: 'eclipse'
+	apply plugin: 'org.springframework.boot'
+	apply plugin: 'io.spring.dependency-management' 
+		
+	sourceCompatibility = 1.8
+	targetCompatibility = 1.8
+	
+	repositories {
+	    mavenCentral()
+	}
+	
+	dependencies {
+	    testCompile('org.springframework.boot:spring-boot-starter-test') 
+	}
+	
+	ext {
+	  springCloudVersion = 'Dalston.RELEASE'
+	}	
+	
+	dependencyManagement {
+		imports {
+			mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+		}
+	}
+}
+	
+
