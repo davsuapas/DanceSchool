@@ -1,0 +1,39 @@
+databaseChangeLog:
+  - changeSet:
+      id: master
+      author: dav.sua.pas
+      changes:
+        - createTable:
+            tableName: customer
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: firstname
+                  type: varchar(30)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: surnames
+                  type: varchar(50)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: email
+                  type: varchar(100)
+                  constraints:
+                    nullable: true
+        - createIndex:
+              columns:
+              - column:
+                  name: surnames
+                  type: varchar(50)
+              indexName: idx_lastname
+              tableName: customer
+              unique: true                    
+                    
