@@ -1,7 +1,7 @@
 databaseChangeLog:
   - changeSet:
       id: master
-      author: dav.sua.pas
+      author: dav.sua.pas@gmail.com
       changes:
         - createTable:
             tableName: customer
@@ -14,13 +14,23 @@ databaseChangeLog:
                     primaryKey: true
                     nullable: false
               - column:
-                  name: firstname
+                  name: version
+                  type: int
+                  constraints:
+                    nullable: false
+              - column:
+                  name: first_name
                   type: varchar(30)
                   constraints:
                     nullable: false
               - column:
-                  name: surnames
-                  type: varchar(50)
+                  name: second_name
+                  type: varchar(30)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: third_name
+                  type: varchar(30)
                   constraints:
                     nullable: false
               - column:
@@ -31,9 +41,18 @@ databaseChangeLog:
         - createIndex:
               columns:
               - column:
-                  name: surnames
-                  type: varchar(50)
-              indexName: idx_lastname
+                  name: second_name
+                  type: varchar(30)
+              indexName: idx_second_name
               tableName: customer
-              unique: true                    
+              unique: false
+        - createIndex:
+              columns:
+              - column:
+                  name: third_name
+                  type: varchar(30)
+              indexName: idx_third_name
+              tableName: customer
+              unique: false                    
+                                  
                     

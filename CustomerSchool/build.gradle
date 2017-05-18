@@ -15,4 +15,6 @@ dependencies {
 	compile('org.liquibase:liquibase-core')
 	runtime('mysql:mysql-connector-java')
 	compileOnly('org.projectlombok:lombok')
+	
+	compile project(':CoreSchool')
 }

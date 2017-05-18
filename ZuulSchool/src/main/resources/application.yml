@@ -1,0 +1,11 @@
+server:
+  port: 8762
+spring:
+  application:
+    name: zuul-school
+
+zuul:
+  ignored-services: '*'
+  routes:
+    customer-school: /customerproxy/**
+    
