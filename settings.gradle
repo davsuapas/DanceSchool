@@ -2,4 +2,5 @@ include "EurekaSchool"
 include "ZuulSchool"
 include "CoreSchool"
 include "CustomerSchool"
+include "WebSchool"
 

@@ -6,7 +6,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-	classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
         classpath('io.spring.gradle:dependency-management-plugin:1.0.2.RELEASE')
     }
 }
@@ -26,6 +26,8 @@ subprojects {
 	}
 	
 	dependencies {
+		compileOnly('org.projectlombok:lombok')
+	
 	    testCompile('org.springframework.boot:spring-boot-starter-test') 
 	}
 	
