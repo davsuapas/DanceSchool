@@ -12,5 +12,9 @@ dependencies {
 	compile('org.springframework.boot:spring-boot-starter-thymeleaf')
 	compile('org.springframework.boot:spring-boot-starter-web')
 	compile('org.springframework.cloud:spring-cloud-starter-eureka')
+	compile('org.springframework.boot:spring-boot-starter-hateoas')
+	compile('org.springframework.cloud:spring-cloud-starter-feign')
+	
+	compile project(':CoreSchool')
 }
 

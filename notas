@@ -1,0 +1,1 @@
+curl "http://localhost:8762/customerproxy/customers/search/econdName?secondName=Suarez&projection=descriptor"

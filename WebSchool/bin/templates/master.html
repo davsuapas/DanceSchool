@@ -1,27 +1,48 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<html class="mdc-typography" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 	<head>
 		<meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-		<meta name="viewport" content="width=device-width, initialscale=1, maximum-scale=1.0, user-scalable=no"/>
+		<meta name="viewport" content="width=device-width, initialscale=1"/>
 		
-		<link rel="stylesheet" href="master.css">
+		<link rel="stylesheet" th:href="@{~/master.css}">
 		
-		<link rel="stylesheet" href="https://unpkg.com/@material/toolbar@latest/dist/mdc.toolbar.min.css">
+		<link rel="stylesheet" href="https://unpkg.com/material-components-web@0.12.1/dist/material-components-web.min.css">
 		<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+		<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+		<script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+	
+		<script th:src="@{~/master.js}"></script>
 		
-		<title>Escuela de danza Silvia Pascual</title>
+		<th:block layout:fragment="head"></th:block>
+		
+		<title>Escuela de danza, Silvia Pascual</title>
 	</head>
-	<body>
-		<header class="mdc-toolbar">
+	
+	<body class="mdc-typography layout-body">
+		<header class="mdc-toolbar mdc-toolbar--fixed">
 	  		<div class="mdc-toolbar__row">
 	    		<section class="mdc-toolbar__section mdc-toolbar__section--align-start">
-	      			<a href="#" class="material-icons">menu</a>
+	    			<a href="/" class="sch-toolbar-link">
+	      				<span class="material-icons">accessibility</span>
+	      			</a>
 	      			<span class="mdc-toolbar__title sch-toolbar-title">Escuela de danza, Silvia Pascual</span>
+	    		</section>
+	    		<section class="mdc-toolbar__section mdc-toolbar__section--align-end">
+	    			<a href="/customer/list" class="sch-toolbar-link">
+						<span class="mdc-toolbar__title" th:classappend="${toolbar.isCustomer()} ? 'sch-toolbar-item-selected' : ''">CLIENTES</span>
+					</a>
+	    			<a href="/invoice/list" class="sch-toolbar-link sch-toolbar-title">
+	    				<span class="mdc-toolbar__title" th:classappend="${toolbar.isInvoice()} ? 'sch-toolbar-item-selected' : ''">FACTURAS</span>
+					</a>
+	    			<span class="material-icons sch-toolbar-title">cloud_off</span>
 	    		</section>
 	  		</div>
 		</header>
-		<section layout:fragment="content">
-			<p>Page content goes here</p>
-		</section>		
+		<main class="layout-main">
+			<div layout:fragment="content">
+	 			Content
+	 		</div>
+   		</main>
 	</body>
 </html>

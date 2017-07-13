@@ -10,6 +10,9 @@ import com.elipcero.customerschool.domain.Customer;
 
 public interface CustomerRepository extends CrudRepository<Customer, Integer> {
 	
+	@RestResource(path = "secondName", rel = "secondName")
+	List<Customer> findBySecondName(@Param("secondName") String secondName);
+	
 	@RestResource(path = "secondAndThirdName", rel = "secondAndThridName")
 	List<Customer> findBySecondNameAndThirdName(@Param("secondName") String secondName, @Param("thirdName") String thirdName);
 }

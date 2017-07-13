@@ -1,8 +1,71 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" data-layout-decorate="~{master}">
 	<body>
-    	<div layout:fragment="content">
-      		customer
-    	</div>
+		<th:block layout:fragment="head">
+			<script th:src="@{~/customer/customerlist.js}"></script>
+			<link rel="stylesheet" th:href="@{~/customer/customerlist.css}">
+		</th:block>	
+		<div layout:fragment="content">
+		
+			<aside id="my-mdc-dialog"
+			  th:attrappend="dialog-open=${window.open}? 'true'" 
+			  class="mdc-dialog"
+			  role="alertdialog"
+			  aria-labelledby="my-mdc-dialog-label"
+			  aria-describedby="my-mdc-dialog-description">
+			  <div class="mdc-dialog__surface">
+			    <header class="mdc-dialog__header dialog-head">
+			      <h2 id="my-mdc-dialog-label" class="mdc-dialog__header__title">
+			        Buscar por
+			      </h2>
+			    </header>
+			    <form th:action="@{/customer/search}" method="post">
+				    <section id="my-mdc-dialog-description" class="mdc-dialog__body">
+						<div class="mdc-layout-grid">
+							<div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12 mdc-textfield mdc-textfield--upgraded" data-mdc-auto-init="MDCTextfield">
+						  		<input type="text" id="secondName" name="secondName" class="mdc-textfield__input search-input">
+						  		<label class="mdc-textfield__label" for="secondName">Primer apellido</label>
+			  			  	</div>
+	     				</div>
+						<div class="mdc-layout-grid">
+							<div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12 mdc-textfield mdc-textfield--upgraded"  data-mdc-auto-init="MDCTextfield">
+						  		<input type="text" id="thirdName" name="thirdName" class="mdc-textfield__input search-input">
+						  		<label class="mdc-textfield__label" for="thirdName">Segundo apellido</label>
+			  			  	</div>
+	     				</div>
+	 				</section>
+				    <footer class="mdc-dialog__footer">
+				      <button type="button" class="mdc-button mdc-dialog__footer__button mdc-dialog__footer__button--cancel">Cancelar</button>
+				      <button type="submit" class="mdc-button mdc-dialog__footer__button mdc-dialog__footer__button--accept">Aceptar</button>
+				    </footer>
+				</form>				    
+			  </div>
+			  <div class="mdc-dialog__backdrop"></div>
+			</aside>
+			
+			<h1 th:if="${!window.open && customersRowsCols.size() == 0}" class="mdc-typography--display1">No existe ningún registro que cumpla la condición</h1>
+			
+			<div th:each="customersRows : ${customersRowsCols}" class="mdc-layout-grid">
+			  <div th:each="customer : ${customersRows}" class="mdc-layout-grid__cell mdc-layout-grid__cell--span-3">
+		     	<div class="mdc-card sch-card">
+	 				<section class="mdc-card__primary sch-card-primary">
+		   				<h1 class="mdc-card__title mdc-card__title--large" th:text="${customer.getSurname()}">Apellidos</h1>
+		   				<h2 class="mdc-card__subtitle" th:text="${customer.firstName}">Nombre</h2>
+	 				</section>
+	 				<section class="mdc-card__actions">
+		   				<button class="mdc-button mdc-button--compact mdc-card__action">Editar</button>
+		   				<button class="mdc-button mdc-button--compact mdc-card__action">Eliminar</button>
+	 				</section>
+				</div>
+			  </div>
+			</div>
+			
+	   		<button search-button id="f1" class="mdc-fab app-fab--absolute" aria-label="Buscar">
+			  <span class="mdc-fab__icon material-icons">search</span>
+			</button>	     
+	   		<button id="f2" class="mdc-fab app-fab--absolute" aria-label="Nuevo">
+			  <span class="mdc-fab__icon material-icons">exposure_plus_1</span>
+			</button>	     
+	    </div>
   	</body>
-</html>
+</html>			
