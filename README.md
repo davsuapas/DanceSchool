@@ -1,2 +1,2 @@
 # DanceSchool
-Dance School Project
+Dance School Project (Spring Cloud Netflix)
