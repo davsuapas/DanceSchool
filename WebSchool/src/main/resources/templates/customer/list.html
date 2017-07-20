@@ -53,8 +53,12 @@
 		   				<h2 class="mdc-card__subtitle" th:text="${customer.firstName}">Nombre</h2>
 	 				</section>
 	 				<section class="mdc-card__actions">
-		   				<button class="mdc-button mdc-button--compact mdc-card__action">Editar</button>
-		   				<button class="mdc-button mdc-button--compact mdc-card__action">Eliminar</button>
+					    <form th:action="@{/customer/action/} + ${customer.id}" th:object="${searchForm}" method="post">
+					    	<input type="hidden" name="secondName" th:value="*{secondName}">
+					    	<input type="hidden" name="thirdName" th:value="*{thirdName}">
+			   				<button type="submit" name="edit" class="mdc-button mdc-button--compact mdc-card__action">Editar</button>
+			   				<button type="submit" name="delete" class="mdc-button mdc-button--compact mdc-card__action">Eliminar</button>
+			   			</form>
 	 				</section>
 				</div>
 			  </div>

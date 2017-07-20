@@ -26,4 +26,8 @@ public class CustomerService {
 			return CollectionUtil.ConvertToList(this.customerResource.findBySecondAndThirdName(secondName, thirdName).getContent());
 		}
 	}
+
+	public void delete(Integer id) {
+		this.customerResource.delete(id);
+	}
 }
