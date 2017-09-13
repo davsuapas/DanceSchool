@@ -1,15 +1,26 @@
 package com.elipcero.schoolweb.customer.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
-@Getter
-@AllArgsConstructor
+import lombok.Data;
+
+@Data
 public class CustomerDescriptor {
-	private final Integer id;
-	private final String firstName;
-	private final String secondName;
-	private final String thirdName;
+	
+	private Integer id;
+	
+	@NotNull
+	@Size(max = 30)
+	private String firstName;
+	
+	@NotNull
+	@Size(max = 30)
+	private String secondName;
+	
+	@NotNull
+	@Size(max = 30)
+	private String thirdName;
 	
 	public String getSurname() {
 		return secondName + ", " + thirdName;

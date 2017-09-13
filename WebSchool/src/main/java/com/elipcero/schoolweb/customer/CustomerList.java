@@ -1,6 +1,7 @@
 package com.elipcero.schoolweb.customer;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
@@ -40,7 +41,15 @@ public class CustomerList {
 	)
 	public String getCustomerList(@PathVariable String secondName, @PathVariable(required=false) String thirdName, Model model) {
 		FillModel(model, this.customerService.find(secondName, thirdName), false);
-		model.addAttribute("searchForm", new SearchForm(secondName, thirdName));
+		FillModelSearchForm(model, secondName, thirdName);
+		return "customer/list";
+	}
+	
+	@GetMapping(value="/{id}")
+	public String getCustomerById(@PathVariable Integer id, Model model) {
+		CustomerDescriptor customer = this.customerService.getCustomerById(id);
+		FillModel(model, customer, false);
+		FillModelSearchForm(model, customer.getSecondName(), customer.getThirdName());
 		return "customer/list";
 	}
 	
@@ -49,7 +58,7 @@ public class CustomerList {
 		return redirectCustomerList(searchForm);
 	}
 
-	@PostMapping(value="/action/{id}", params={"delete"})
+	@PostMapping(value="/delete/{id}")
 	public String delete(@PathVariable String id, SearchForm searchForm) {
 		this.customerService.delete(Integer.valueOf(id));
 		return redirectCustomerList(searchForm);
@@ -59,8 +68,16 @@ public class CustomerList {
 		return String.format("redirect:/customer/search/%s/%s", searchForm.getSecondName(), searchForm.getThirdName());
 	}
 	
+	private static void FillModelSearchForm(Model model, String secondName, String thirdName) {
+		model.addAttribute("searchForm", new SearchForm(secondName, thirdName));
+	}
+	
 	private static void FillModel(Model model) {
 		FillModel(model, new ArrayList<CustomerDescriptor>(), true);
+	}
+	
+	private static void FillModel(Model model, CustomerDescriptor customerDescriptor, Boolean forceSearchWindow) {
+		FillModel(model, Arrays.asList(customerDescriptor), false);
 	}	
 	
 	private static void FillModel(Model model, List<CustomerDescriptor> customerDescriptors, Boolean forceSearchWindow) {

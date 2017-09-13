@@ -13,13 +13,19 @@ html {
   height: 100%;
 }
 /* Place drawer and main next to each other. */
-.layout-content {
+.drawer-content {
   display: flex;
   flex: 1 1 auto;
   height: 100%;
   box-sizing: border-box;
 }
+.drawer-main {
+  padding-left: 15px;
+  width: 100%
+}
+
 .layout-main {
+  height: 100%;
   padding-left: 15px;
   padding-top: 80px;
 }
@@ -67,4 +73,21 @@ a {
 	background-color: #f7f7f7;
 	height: 80px;
 	padding: 0px 24px 0 !important;
+}
+
+/* layout default values */
+.sch-default-layout-grid {
+	--mdc-layout-grid-margin: 0px;
+  	--mdc-layout-grid-gutter: 0px;
+}
+
+/* input */
+.sch-default-input {
+	width: 98%
+}
+
+/* buttons*/
+.sch-button-link {
+	border: none;
+	background: transparent;
 }

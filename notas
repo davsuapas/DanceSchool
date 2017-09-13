@@ -1,1 +1,12 @@
 curl "http://localhost:8762/customerproxy/customers/search/econdName?secondName=Suarez&projection=descriptor"
+
+		<th:block layout:fragment="head">
+			<script th:src="@{~/customer/customerlist.js}"></script>
+			<link rel="stylesheet" th:href="@{~/customer/customerlist.css}">
+		</th:block>	
+
+		
+						      <a class="mdc-list-item mdc-permanent-drawer--selected" href="#">
+				        <i class="material-icons mdc-list-item__start-detail" aria-hidden="true">save</i>Guardar
+				      </a>
+		
