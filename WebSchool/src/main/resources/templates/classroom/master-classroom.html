@@ -9,8 +9,8 @@
 					    <a href="/classtype/list" class="mdc-list-item mdc-permanent-drawer--selected sch-button-link">
 					    	<i class="material-icons mdc-list-item__start-detail" aria-hidden="true">merge_type</i><span th:classappend="${classroomMenu.isClassType()} ? 'sch-menu-item-selected' : ''">Tipo de clases</span>
 					    </a>
-					    <a class="mdc-list-item mdc-permanent-drawer--selected sch-button-link">
-					    	<i class="material-icons mdc-list-item__start-detail" aria-hidden="true">class</i>Aulas
+					    <a href="/classroom/list" class="mdc-list-item mdc-permanent-drawer--selected sch-button-link">
+					    	<i class="material-icons mdc-list-item__start-detail" aria-hidden="true">class</i><span th:classappend="${classroomMenu.isClassroom()} ? 'sch-menu-item-selected' : ''">Aulas</span>
 					    </a>
 					    <a class="mdc-list-item mdc-permanent-drawer--selected sch-button-link">
 					    	<i class="material-icons mdc-list-item__start-detail" aria-hidden="true">settings</i>Configurar aulas

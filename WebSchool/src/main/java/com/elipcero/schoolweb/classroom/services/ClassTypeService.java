@@ -46,5 +46,4 @@ public class ClassTypeService {
 		
 		return ResourceUtil.GetId(resource);
 	}
-	
 }

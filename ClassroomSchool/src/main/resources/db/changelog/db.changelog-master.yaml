@@ -23,5 +23,25 @@ databaseChangeLog:
                   type: varchar(50)
                   constraints:
                     nullable: false                             
+        - createTable:
+            tableName: classroom
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: version
+                  type: int
+                  constraints:
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(50)
+                  constraints:
+                    nullable: false                             
                                                       
                     

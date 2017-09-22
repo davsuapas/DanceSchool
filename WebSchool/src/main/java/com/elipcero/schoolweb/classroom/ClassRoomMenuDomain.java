@@ -9,6 +9,7 @@ public class ClassRoomMenuDomain {
 
 	public enum EnumMenuOption {
 		ClassType,
+		Classroom
 	}
 
 	private EnumMenuOption menuOptionActive;
@@ -16,5 +17,8 @@ public class ClassRoomMenuDomain {
 	public Boolean isClassType() {
 		return this.menuOptionActive == EnumMenuOption.ClassType;
 	}
-
+	
+	public Boolean isClassroom() {
+		return this.menuOptionActive == EnumMenuOption.Classroom;
+	}
 }
