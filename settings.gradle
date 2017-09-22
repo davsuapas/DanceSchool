@@ -3,4 +3,4 @@ include "ZuulSchool"
 include "CoreSchool"
 include "CustomerSchool"
 include "WebSchool"
-
+include "ClassroomSchool"

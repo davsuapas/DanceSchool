@@ -11,7 +11,8 @@ public class ToolbarDomain {
 	public enum EnumMenuOption {
 		Home,
 		Customer,
-		Invoice
+		Invoice,
+		Classroom
 	}
 
 	private EnumMenuOption menuOptionActive;
@@ -26,5 +27,9 @@ public class ToolbarDomain {
 	
 	public Boolean isInvoice() {
 		return this.menuOptionActive == EnumMenuOption.Invoice;
+	}
+	
+	public Boolean isClassroom() {
+		return this.menuOptionActive == EnumMenuOption.Classroom;
 	}
 }

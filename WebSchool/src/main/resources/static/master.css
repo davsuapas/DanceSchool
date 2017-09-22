@@ -44,6 +44,13 @@ a {
 	color:#5dffdc;
 }
 
+/* Menus */
+
+.sch-menu-item-selected {
+	color:seagreen
+}
+
+
 /* Cards */
 .sch-card {
 	width: 300px;

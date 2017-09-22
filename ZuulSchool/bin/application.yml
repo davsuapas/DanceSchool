@@ -8,4 +8,5 @@ zuul:
   ignored-services: '*'
   routes:
     customer-school: /customerproxy/**
+    classroom-school: /classroomproxy/**
     

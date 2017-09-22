@@ -5,7 +5,7 @@ spring:
   application:
     name: customer-school
   datasource:
-    url: jdbc:mysql://172.17.0.2/school
+    url: jdbc:mysql://172.17.0.3/school
     username: schoolservice
     password: Aq1sw2de3fr4
     driverClassName: com.mysql.jdbc.Driver
