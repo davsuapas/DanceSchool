@@ -17,9 +17,13 @@ import lombok.ToString;
 @ToString
 @EqualsAndHashCode
 public class AbstractDomain implements Identifiable<Integer> {
-
-	private final @Id @GeneratedValue(strategy = GenerationType.AUTO) Integer id;
+	
+	private @Id final @GeneratedValue(strategy = GenerationType.AUTO) Integer id;
 	private @Version Integer version;
+	
+	public AbstractDomain(int id) {
+		this.id = id;
+	}
 
 	protected AbstractDomain() {
 		this.id = null;

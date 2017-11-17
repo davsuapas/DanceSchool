@@ -16,21 +16,21 @@ import lombok.NonNull;
 @AllArgsConstructor
 public class ClassroomService {
 	
-	private @NonNull final ClassroomResource ClassroomResource;
+	private @NonNull final ClassroomResource classroomResource;
 
 	public Classroom getClassroomById(Integer id) {
-		Resource<Classroom> resource = this.ClassroomResource.getClassroomById(id);
-		Classroom Classroom = resource.getContent();
-		Classroom.setId(id);
-		return Classroom; 
+		Resource<Classroom> resource = this.classroomResource.getClassroomById(id);
+		Classroom classroom = resource.getContent();
+		classroom.setId(id);
+		return classroom; 
 	}
 
 	public void delete(Integer id) {
-		this.ClassroomResource.delete(id);
+		this.classroomResource.delete(id);
 	}
 	
 	public List<Classroom> getAll() {
-		return CollectionUtil.ConvertToList(this.ClassroomResource.getAll().getContent());
+		return CollectionUtil.ConvertToList(this.classroomResource.getAll().getContent());
 	}
 	
 	public Integer save(Classroom classroom) {
@@ -38,12 +38,12 @@ public class ClassroomService {
 		Resource<Classroom> resource = null;
 		
 		if (classroom.getId() == null) {
-			resource = this.ClassroomResource.add(classroom);
+			resource = this.classroomResource.add(classroom);
 		}
 		else {
-			resource = this.ClassroomResource.update(classroom.getId(), classroom);
+			resource = this.classroomResource.update(classroom.getId(), classroom);
 		}
 		
-		return ResourceUtil.GetId(resource);
+		return ResourceUtil.GetIntegerId(resource);
 	}
 }

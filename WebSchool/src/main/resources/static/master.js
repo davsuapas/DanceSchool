@@ -1,4 +1,5 @@
 var mdcDialog;
+var mdcSnackbar;
 
 $(document).ready(function() {
 	window.mdc.autoInit();
@@ -19,4 +20,18 @@ $(document).ready(function() {
 			mdcDialog.show();
 		}
 	});
+	
+	var mdcSnackbar = new mdc.snackbar.MDCSnackbar(document.querySelector('.mdc-snackbar'));
+	
+	var snackShow = $("div[snack-show='true']").get(0);
+	
+	if (snackShow) {
+		mdcSnackbar.show(
+				{
+					message: snackShow.getAttribute( "snack-text"),
+					timeout: 7000
+				}
+		);
+	}
 });
+

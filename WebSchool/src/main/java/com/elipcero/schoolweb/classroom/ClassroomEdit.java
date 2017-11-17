@@ -23,28 +23,30 @@ import lombok.NonNull;
 @AllArgsConstructor
 public class ClassroomEdit {
 	
+	private static final String VIEWNAME_CLASSROOM_EDIT = "classroom/classroom-edit";
+	
 	private @NonNull final ClassroomService classroomService;
 
 	@GetMapping(value="/add")
 	public String add(Model model) {
 		ToolbarBuilder.Fill(model, ToolbarDomain.EnumMenuOption.Classroom);
 		model.addAttribute("classroom", new Classroom());
-		return "classroom/classroom-edit";
+		return VIEWNAME_CLASSROOM_EDIT;
 	}
 	
 	@GetMapping(value="/update/{id}")
 	public String update(Model model, @PathVariable Integer id) {
 		ToolbarBuilder.Fill(model, ToolbarDomain.EnumMenuOption.Classroom);
 		model.addAttribute("classroom", classroomService.getClassroomById(id));
-		return "classroom/classroom-edit";
+		return VIEWNAME_CLASSROOM_EDIT;
 	}
 	
 	@PostMapping(value="/save")
 	public String save(@Valid Classroom classroom, BindingResult bindingResult, Model model) {
-		
+
 		if (bindingResult.hasErrors()) {
 			ToolbarBuilder.Fill(model, ToolbarDomain.EnumMenuOption.Classroom);
-			return "classroom/classroom-edit";
+			return VIEWNAME_CLASSROOM_EDIT;
 		}
 		
 		Integer classroomId = classroomService.save(classroom);

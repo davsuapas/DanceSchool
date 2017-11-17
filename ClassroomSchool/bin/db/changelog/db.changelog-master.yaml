@@ -42,6 +42,45 @@ databaseChangeLog:
                   name: name
                   type: varchar(50)
                   constraints:
-                    nullable: false                             
+                    nullable: false
+  - changeSet:
+      id: master_classroom_1
+      author: dav.sua.pas@gmail.com
+      changes:
+        - createTable:
+            tableName: classroom_class_type
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: version
+                  type: int
+                  constraints:
+                    nullable: false
+              - column:
+                  name: classroom_id
+                  type: int
+                  constraints:
+                    nullable: false
+                    foreignKeyName: "fk_classroomclasstype_classroom" 
+                    references: "classroom(id)"                    
+              - column:
+                  name: class_type_id
+                  type: int
+                  constraints:
+                    nullable: false
+                    foreignKeyName: "fk_classroomclasstype_classtype" 
+                    references: "class_type(id)"                    
+              - column:
+                  name: class_max
+                  type: int
+                  constraints:
+                    nullable: false
+                                                 
                                                       
                     

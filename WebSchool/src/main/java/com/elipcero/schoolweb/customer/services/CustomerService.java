@@ -52,6 +52,6 @@ public class CustomerService {
 			resource = this.customerResource.update(customer.getId(), customer);
 		}
 		
-		return ResourceUtil.GetId(resource);
+		return ResourceUtil.GetIntegerId(resource);
 	}
 }

@@ -45,7 +45,6 @@ a {
 }
 
 /* Menus */
-
 .sch-menu-item-selected {
 	color:seagreen
 }
@@ -61,6 +60,10 @@ a {
 	background: -webkit-linear-gradient(top, #cdeb8b 0%,#cdeb8b 100%);
 	background: linear-gradient(to bottom, #cdeb8b 0%,#cdeb8b 100%);
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cdeb8b', endColorstr='#cdeb8b',GradientType=0 );
+}
+
+.sch-card-highlight {
+	color: brown !important;
 }
 
 /* float icons */

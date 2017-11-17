@@ -1,6 +1,6 @@
 databaseChangeLog:
   - changeSet:
-      id: master
+      id: master_customer
       author: dav.sua.pas@gmail.com
       changes:
         - createTable:

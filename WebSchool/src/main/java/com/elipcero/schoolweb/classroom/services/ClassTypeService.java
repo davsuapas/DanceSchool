@@ -44,6 +44,6 @@ public class ClassTypeService {
 			resource = this.classTypeResource.update(classType.getId(), classType);
 		}
 		
-		return ResourceUtil.GetId(resource);
+		return ResourceUtil.GetIntegerId(resource);
 	}
 }
