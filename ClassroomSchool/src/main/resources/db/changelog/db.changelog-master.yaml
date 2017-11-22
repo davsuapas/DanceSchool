@@ -51,21 +51,10 @@ databaseChangeLog:
             tableName: classroom_class_type
             columns:
               - column:
-                  name: id
-                  type: int
-                  autoIncrement: true
-                  constraints:
-                    primaryKey: true
-                    nullable: false
-              - column:
-                  name: version
-                  type: int
-                  constraints:
-                    nullable: false
-              - column:
                   name: classroom_id
                   type: int
                   constraints:
+                    primaryKey: true
                     nullable: false
                     foreignKeyName: "fk_classroomclasstype_classroom" 
                     references: "classroom(id)"                    
@@ -73,6 +62,7 @@ databaseChangeLog:
                   name: class_type_id
                   type: int
                   constraints:
+                    primaryKey: true
                     nullable: false
                     foreignKeyName: "fk_classroomclasstype_classtype" 
                     references: "class_type(id)"                    
