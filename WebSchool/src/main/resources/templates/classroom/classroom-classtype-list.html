@@ -1,29 +1,29 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" data-layout-decorate="~{/classroom/master-classroom}">
-	<body>
-		<div layout:fragment="content-classroom">
-			<h1 th:if="${classroomclassTypeRowsCols.size() == 0}" class="mdc-typography--display1">No existe ningún registro</h1>
-			
-			<div th:each="rows : ${classroomclassTypeRowsCols}" class="mdc-layout-grid">
-			  <div th:each="row : ${rows}" class="mdc-layout-grid__cell mdc-layout-grid__cell--span-3">
-		     	<div class="mdc-card sch-card">
-	 				<section class="mdc-card__primary sch-card-primary">
-   						<h1 class="mdc-card__title mdc-card__title--large" th:text="${row.getName()}">Nombre</h1>
-    					<h2 class="mdc-card__subtitle sch-card-highlight" th:text="${'Máximo: ' + row.classMax + ' alumnos'}">Número máximo de alumnos</h2>	 				
-	 				</section>
-	 				<section class="mdc-card__actions">
-		   				<a th:href="@{/classroomclasstype/update/} + ${row.getId()}" class="mdc-button mdc-button--compact mdc-card__action">Editar</a>
-		   				<a th:href="@{/classroomclasstype/delete/} + ${row.getId()}" class="mdc-button mdc-button--compact mdc-card__action">Eliminar</a>
-	 				</section>
-				</div>
-			  </div>
+<body>
+<div layout:fragment="content-classroom">
+	<h1 th:if="${classroomclassTypeRowsCols.size() == 0}" class="mdc-typography--display1">No existe ningún registro</h1>
+
+	<div th:each="rows : ${classroomclassTypeRowsCols}" class="mdc-layout-grid">
+		<div th:each="row : ${rows}" class="mdc-layout-grid__cell mdc-layout-grid__cell--span-3">
+			<div class="mdc-card sch-card">
+				<section class="mdc-card__primary sch-card-primary">
+					<h1 class="mdc-card__title mdc-card__title--large" th:text="${row.getName()}">Nombre</h1>
+					<h2 class="mdc-card__subtitle sch-card-highlight" th:text="${'Máximo: ' + row.classMax + ' alumnos'}">Número máximo de alumnos</h2>
+				</section>
+				<section class="mdc-card__actions">
+					<a th:href="@{/classroomclasstype/update/} + ${row.getId()}" class="mdc-button mdc-button--compact mdc-card__action">Editar</a>
+					<a th:href="@{/classroomclasstype/delete/} + ${row.getId()}" class="mdc-button mdc-button--compact mdc-card__action">Eliminar</a>
+				</section>
 			</div>
-			
-			<a th:href="@{/classroomclasstype/add}">
-		   		<button id="f2" class="mdc-fab app-fab--absolute" aria-label="Nuevo">
-		   			<span class="mdc-fab__icon material-icons">exposure_plus_1</span>
-				</button>	     
-			</a>
-	    </div>
-  	</body>
+		</div>
+	</div>
+
+	<a th:href="@{/classroomclasstype/add}">
+		<button id="f2" class="mdc-fab app-fab--absolute" aria-label="Nuevo">
+			<span class="mdc-fab__icon material-icons">exposure_plus_1</span>
+		</button>
+	</a>
+</div>
+</body>
 </html>			

@@ -1,9 +1,12 @@
 package com.elipcero.classroomschool;
 
+import com.elipcero.classroomschool.domains.ClassCalendar;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.Bean;
 
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.jpa.convert.threeten.Jsr310JpaConverters;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
 import org.springframework.data.rest.webmvc.config.RepositoryRestConfigurerAdapter;
@@ -17,11 +20,12 @@ import com.elipcero.classroomschool.web.ClassroomClassTypeIdConvert;
 
 @Configuration
 @EnableJpaRepositories("com.elipcero.classroomschool.repositories")
+@EntityScan(basePackageClasses = {Application.class, Jsr310JpaConverters.class})
 public class ClassroomDataConfiguration extends RepositoryRestConfigurerAdapter {
 
     @Override
     public void configureRepositoryRestConfiguration(RepositoryRestConfiguration config) {
-        config.exposeIdsFor(ClassType.class, Classroom.class);
+        config.exposeIdsFor(ClassType.class, Classroom.class, ClassCalendar.class);
     }
     
     @Bean

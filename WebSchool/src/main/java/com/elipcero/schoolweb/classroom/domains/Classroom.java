@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 public class Classroom  {
-	
+
 	public Classroom(Integer id) {
 		this.id = id;
 	}

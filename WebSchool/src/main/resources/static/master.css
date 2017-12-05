@@ -30,6 +30,11 @@ html {
   padding-top: 80px;
 }
 
+/* Posiciones */
+.sch-div-linea {
+	float:left;
+}
+
 /* Toolbar */
 a {
   text-decoration: none; 
@@ -101,3 +106,4 @@ a {
 	border: none;
 	background: transparent;
 }
+

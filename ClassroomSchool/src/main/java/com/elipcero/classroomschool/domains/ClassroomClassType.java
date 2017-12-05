@@ -25,7 +25,7 @@ public class ClassroomClassType {
 	@ManyToOne
 	@MapsId("classType")
 	private ClassType classType;
-
+	
 	@Column(nullable=false)
-	private Integer classMax;
+	private Integer classMax;	
 }
