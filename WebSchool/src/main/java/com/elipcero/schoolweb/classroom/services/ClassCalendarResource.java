@@ -11,7 +11,10 @@ public interface ClassCalendarResource {
 
     @GetMapping(value = "classCalendars/{id}")
     Resource<ClassCalendar> getClassCalendarById(@PathVariable("id") int id);
-    
+
+    @GetMapping(value = "classCalendars/search/numberOfRecords?classroomId={classroomId}&classTypeId={classTypeId}")
+    int numberOfRecords(@PathVariable("classroomId") int classroomId, @PathVariable("classTypeId") int classTypeId);
+
     @DeleteMapping(value = "classCalendars/{id}")
     void delete(@PathVariable("id") Integer id);
     

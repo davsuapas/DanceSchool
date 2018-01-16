@@ -46,12 +46,12 @@ public class ClassroomClassTypeEdit {
 	public String add(Model model) {
 		ToolbarBuilder.Fill(model, ToolbarDomain.EnumMenuOption.Classroom);
 		model.addAttribute("classroomClassType", new ClassroomClassType());
-		model.addAttribute("classrooms", this.classroomService.getAll());
-		model.addAttribute("classTypes", this.classTypeService.getAll());
+		addReferencesToModel(model);
 		model.addAttribute("mode", "adding");
 		return VIEWNAME_CLASSROOM_CLASSTYPE_EDIT;
 	}
-	
+
+
 	@PostMapping(value="/save/{mode}")
 	public String save(
 			@PathVariable String mode,
@@ -59,27 +59,33 @@ public class ClassroomClassTypeEdit {
 			BindingResult bindingResult,
 			Model model,
 			NativeWebRequest webRequest) throws JsonProcessingException {
-	
+
 		IncludeId(webRequest, classroomClassType);
-		
+
 		if (bindingResult.hasErrors()) {
 			ToolbarBuilder.Fill(model, ToolbarDomain.EnumMenuOption.Classroom);
+			addReferencesToModel(model);
 			return VIEWNAME_CLASSROOM_CLASSTYPE_EDIT;
 		}
-		
+
 		String idResource = classroomClassTypeService.save(mode, classroomClassType);
-		
+
 		return String.format("redirect:/classroomclasstype/%s", idResource);
 	}
-	
+
 	private static void IncludeId(NativeWebRequest webRequest, ClassroomClassType classroomClassType) {
-		
+
 		String id = webRequest.getParameter("id");
-		
+
 		if (id != null) {
 			String[] idArray = id.split("_");
 			classroomClassType.setClassroom(new Classroom(Integer.parseInt(idArray[0])));
 			classroomClassType.setClassType(new ClassType(Integer.parseInt(idArray[1])));
 		}
+	}
+
+	private void addReferencesToModel(Model model) {
+		model.addAttribute("classrooms", this.classroomService.getAll());
+		model.addAttribute("classTypes", this.classTypeService.getAll());
 	}
 }

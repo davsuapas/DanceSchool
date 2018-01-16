@@ -1,13 +1,13 @@
 server:
   port: 8080
-  
+
 spring:
   application:
     name: web-school
   thymeleaf:
    cache: false
    mode: HTML
-       
+
 eureka:
   instance:
     hostname: localhost

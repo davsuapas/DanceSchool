@@ -106,12 +106,12 @@ databaseChangeLog:
                     references: "classroom_class_type(class_type_id)"                    
               - column:
                   name: start
-                  type: date
+                  type: datetime
                   constraints:
                     nullable: false
               - column:
                   name: end
-                  type: date
+                  type: datetime
                   constraints:
                     nullable: false                  
         - createTable:
@@ -132,10 +132,5 @@ databaseChangeLog:
                   constraints:
                     nullable: false
                     primaryKey: true
-              - column:
-                  name: class_people
-                  type: int
-                  constraints:
-                    nullable: false                  
-                                                      
+
                     

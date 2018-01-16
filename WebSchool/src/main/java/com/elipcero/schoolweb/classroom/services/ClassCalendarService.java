@@ -3,6 +3,8 @@ package com.elipcero.schoolweb.classroom.services;
 import com.elipcero.schoolcore.CollectionUtil;
 import com.elipcero.schoolcore.ResourceUtil;
 import com.elipcero.schoolweb.classroom.domains.ClassCalendar;
+import com.elipcero.schoolweb.classroom.domains.ClassCalendarEdition;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.AllArgsConstructor;
 import lombok.NonNull;
 import org.springframework.hateoas.Resource;
@@ -16,7 +18,7 @@ public class ClassCalendarService {
 	
 	private @NonNull final ClassCalendarResource classCalendarResource;
 
-	public ClassCalendar getClassCalendarById(Integer id) {
+	public ClassCalendar getClassCalendarById(int id) {
 		Resource<ClassCalendar> resource = this.classCalendarResource.getClassCalendarById(id);
 		ClassCalendar classCalendar = resource.getContent();
 		classCalendar.setId(id);
@@ -31,8 +33,12 @@ public class ClassCalendarService {
 		return CollectionUtil.ConvertToList(this.classCalendarResource.getAll().getContent());
 	}
 	
-	public int save(ClassCalendar classCalendar) {
-		Resource<ClassCalendar> resource = this.classCalendarResource.post(classCalendar);
+	public int save(ClassCalendarEdition classCalendarEdition) {
+		Resource<ClassCalendar> resource = this.classCalendarResource.post(classCalendarEdition.convertToClassCalendar());
 		return ResourceUtil.GetIntegerId(resource);
 	}
+
+    public boolean IsDuplicated(ClassCalendarEdition classCalendarEdition) {
+		return classCalendarResource.numberOfRecords(classCalendarEdition.getClassroom().getId(), classCalendarEdition.getClassType().getId()) > 0;
+    }
 }

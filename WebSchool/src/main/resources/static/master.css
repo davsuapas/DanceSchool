@@ -30,11 +30,6 @@ html {
   padding-top: 80px;
 }
 
-/* Posiciones */
-.sch-div-linea {
-	float:left;
-}
-
 /* Toolbar */
 a {
   text-decoration: none; 
@@ -69,6 +64,10 @@ a {
 
 .sch-card-highlight {
 	color: brown !important;
+}
+
+.sch-card-violet {
+	color: blueviolet !important;
 }
 
 /* float icons */

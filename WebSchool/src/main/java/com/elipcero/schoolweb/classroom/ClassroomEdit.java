@@ -35,7 +35,7 @@ public class ClassroomEdit {
 	}
 	
 	@GetMapping(value="/update/{id}")
-	public String update(Model model, @PathVariable Integer id) {
+	public String update(Model model, @PathVariable int id) {
 		ToolbarBuilder.Fill(model, ToolbarDomain.EnumMenuOption.Classroom);
 		model.addAttribute("classroom", classroomService.getClassroomById(id));
 		return VIEWNAME_CLASSROOM_EDIT;
