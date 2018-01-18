@@ -1,5 +1,6 @@
 package com.elipcero.schoolweb.classroom.domains;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.validation.constraints.NotNull;
@@ -21,8 +22,10 @@ public abstract class ClassCalendarBase {
     @NotNull
     private LocalTime end;
 
+    @JsonIgnore
     public String getName() {
         return this.classroom.getName() + " - " + this.classType.getName();
     }
+    @JsonIgnore
     public String getDisplayTime() { return this.start + " - " + this.end; }
 }

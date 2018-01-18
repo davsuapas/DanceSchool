@@ -1,7 +1,6 @@
 package com.elipcero.schoolweb.classroom;
 
 import com.elipcero.schoolweb.classroom.domains.ClassCalendarEdition;
-import com.elipcero.schoolweb.classroom.domains.ClassroomClassType;
 import com.elipcero.schoolweb.classroom.services.ClassCalendarService;
 import com.elipcero.schoolweb.classroom.services.ClassTypeService;
 import com.elipcero.schoolweb.classroom.services.ClassroomService;
@@ -13,7 +12,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.context.request.NativeWebRequest;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
@@ -44,11 +42,6 @@ public class ClassCalendarEdit {
 		return VIEWNAME_CLASSCALENDAR_EDIT;
 	}
 
-	private void addReferencesToModel(Model model) {
-		model.addAttribute("classrooms", this.classroomService.getAll());
-		model.addAttribute("classTypes", this.classTypeService.getAll());
-	}
-
 	@PostMapping(value="/save/")
 	public String save(
 			@Valid @ModelAttribute("classCalendar") ClassCalendarEdition classCalendarEdition,
@@ -63,6 +56,7 @@ public class ClassCalendarEdit {
 
 		if (classCalendarEdition.isNew()) {
 			if (classCalendarService.IsDuplicated(classCalendarEdition)) {
+				ToolbarBuilder.Fill(model, ToolbarDomain.EnumMenuOption.Classroom);
 				bindingResult.reject("duplicated", "Ya existe un registro configurado para con este mismo tipo de clase y aula");
 				addReferencesToModel(model);
 				return VIEWNAME_CLASSCALENDAR_EDIT;
@@ -72,5 +66,10 @@ public class ClassCalendarEdit {
 		int classCalendarId = classCalendarService.save(classCalendarEdition);
 
 		return String.format("redirect:/classcalendar/%s", classCalendarId);
+	}
+
+	private void addReferencesToModel(Model model) {
+		model.addAttribute("classrooms", this.classroomService.getAll());
+		model.addAttribute("classTypes", this.classTypeService.getAll());
 	}
 }

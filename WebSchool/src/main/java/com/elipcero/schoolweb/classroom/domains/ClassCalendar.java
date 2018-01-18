@@ -1,9 +1,9 @@
 package com.elipcero.schoolweb.classroom.domains;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
-import java.time.DayOfWeek;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
@@ -11,6 +11,7 @@ import java.util.stream.Collectors;
 
 @Data
 @NoArgsConstructor
+@EqualsAndHashCode(callSuper = false)
 public class ClassCalendar extends ClassCalendarBase {
     private Set<ClassCalendarDay> classCalendarDay;
 
@@ -32,18 +33,25 @@ public class ClassCalendar extends ClassCalendarBase {
             switch (day.getDayOfWeek()) {
                 case MONDAY:
                     edition.setMonday(true);
+                    break;
                 case TUESDAY:
                     edition.setTuesday(true);
+                    break;
                 case WEDNESDAY:
                     edition.setWednesday(true);
+                    break;
                 case THURSDAY:
-                    edition.setTuesday(true);
+                    edition.setThursday(true);
+                    break;
                 case FRIDAY:
                     edition.setFriday(true);
+                    break;
                 case SATURDAY:
                     edition.setSaturday(true);
+                    break;
                 case SUNDAY:
                     edition.setSunday(true);
+                    break;
             }
         });
 

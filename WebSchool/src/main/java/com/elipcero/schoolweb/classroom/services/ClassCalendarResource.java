@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 @FeignClient(name = "classroom-school")
 public interface ClassCalendarResource {
 
-    @GetMapping(value = "classCalendars/{id}")
+    @GetMapping(value = "classCalendars/{id}?projection=all")
     Resource<ClassCalendar> getClassCalendarById(@PathVariable("id") int id);
 
     @GetMapping(value = "classCalendars/search/numberOfRecords?classroomId={classroomId}&classTypeId={classTypeId}")
