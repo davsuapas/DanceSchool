@@ -9,4 +9,5 @@ zuul:
   routes:
     customer-school: /customerproxy/**
     classroom-school: /classroomproxy/**
+    classcustomer-school: /classcustomerproxy/**
     
