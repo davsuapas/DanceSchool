@@ -1,18 +1,22 @@
 package com.elipcero.classcustomerschool.domain;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDateTime;
-import java.util.UUID;
 
 @Getter
-@Document
+@NoArgsConstructor
 public class Event<T> {
 
-    public Event(long eventId, String eventType, T entity) {
-        this.id = eventId;
+    public static final String CONST_FIELD_PUBLICATION_CORRELATION_ID = "publicationCorrelationId";
+    public static final String CONST_FIELD_PUBLICATION_EXPIRATION_DATE = "publicationExpirationDate";
+    public static final String CONST_FIELD_PUBLISHED = "published";
+    public static final String CONST_FIELD_ID = "_id";
+
+    public Event(long id, String eventType, T entity) {
+        this.id = id;
         this.eventType = eventType;
         this.entity = entity;
         this.publicationExpirationDate = LocalDateTime.now();
@@ -21,12 +25,12 @@ public class Event<T> {
 
     private boolean published;
     private LocalDateTime publicationExpirationDate;
-    private UUID publicationCorrelationId;
+    private String publicationCorrelationId;
 
     @Id
-    private final long id;
-    private final String eventType;
-    private final LocalDateTime creationDate;
+    private long id;
+    private String eventType;
+    private LocalDateTime creationDate;
 
-    private final T entity;
+    private T entity;
 }
