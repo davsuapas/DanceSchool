@@ -73,15 +73,16 @@ public class EventProcessor {
 
     private void SendingMessage(ClassCustomerEvent event) {
         try {
-            this.source.output().send(
-                    MessageBuilder.withPayload(Converter.convertToClassCustomerMessage(event)).build());
-
-            mongo.updateFirst(
-                    query(where(Event.CONST_FIELD_ID).is(event.getId())),
-                    new Update()
-                            .set(Event.CONST_FIELD_PUBLISHED, true)
-                            .set(Event.CONST_FIELD_PUBLICATION_CORRELATION_ID, ""),
-                    this.collectionName);
+            if (this.source.output().send(
+                MessageBuilder.withPayload(Converter.convertToClassCustomerMessage(event)).build())) {
+                mongo.updateFirst(
+                        query(where(Event.CONST_FIELD_ID).is(event.getId())),
+                        new Update()
+                                .set(Event.CONST_FIELD_PUBLISHED, true)
+                                .set(Event.CONST_FIELD_PUBLICATION_CORRELATION_ID, ""),
+                        this.collectionName);
+                this.log.error("Event message sent: {}", event.toString());
+            }
         } catch (Exception ex) {
             this.log.error("Sending event message: {} with error: {}", event.toString(), ex.toString());
         }

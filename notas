@@ -4,4 +4,4 @@ curl -X POST -H "Content-Type: application/json" -d '[{"eventType":"CreateClass"
 
 docker start mysql-dev
 
-docker-compose -f docker-compose-single-broker.yml up
+docker start tender_feynman
