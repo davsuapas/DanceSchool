@@ -1,10 +1,11 @@
 package com.elipcero.classcustomerschool.web;
 
+import com.elipcero.classcustomerschool.domain.ClassCustomer;
 import com.elipcero.classcustomerschool.domain.ClassCustomerEvent;
-import com.elipcero.classcustomerschool.message.ClassCustomerMessage;
 import com.elipcero.classcustomerschool.message.Converter;
 import com.elipcero.classcustomerschool.repository.ClassCustomerEventRepository;
 import com.elipcero.classcustomerschool.service.CounterService;
+import com.elipcero.schoolcore.eventsourcing.EventMessage;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -22,16 +23,16 @@ public class ClassCustomerEventController {
     @NonNull private final CounterService counterService;
 
     @PostMapping(value = "/register")
-    public @ResponseBody ResponseEntity<?> register(@RequestBody ClassCustomerMessage classCustomerEvent) {
+    public @ResponseBody ResponseEntity<?> register(@RequestBody EventMessage<ClassCustomer> classCustomerEvent) {
         return ResponseEntity.ok(repository.save(
                 Converter.convertToClassCustomerEvent(this.counterService.count(), classCustomerEvent)));
     }
 
     @PostMapping(value = "/registers")
-    public @ResponseBody ResponseEntity<?> registers(@RequestBody List<ClassCustomerMessage> classCustomerMessages) {
+    public @ResponseBody ResponseEntity<?> registers(@RequestBody List<EventMessage<ClassCustomer>> classCustomerMessages) {
         List<ClassCustomerEvent> classCustomers = new ArrayList<>();
 
-        for (ClassCustomerMessage classCustomerMessage : classCustomerMessages) {
+        for (EventMessage<ClassCustomer> classCustomerMessage : classCustomerMessages) {
             classCustomers.add(Converter.convertToClassCustomerEvent(this.counterService.count(), classCustomerMessage));
         }
 

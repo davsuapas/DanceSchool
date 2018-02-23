@@ -2,9 +2,9 @@ package com.elipcero.classcustomerschool.service;
 
 import com.elipcero.classcustomerschool.domain.ClassCustomerEvent;
 import com.elipcero.classcustomerschool.domain.ClassCustomerIdProjection;
-import com.elipcero.classcustomerschool.domain.Event;
 import com.elipcero.classcustomerschool.message.ClassCustomerSource;
 import com.elipcero.classcustomerschool.message.Converter;
+import com.elipcero.schoolcore.eventsourcing.Event;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,7 +58,6 @@ public class EventProcessor {
 
             this.markEventsToReadConcurrently(correlationId);
 
-
             final List<ClassCustomerEvent> events = this.mongo.find(
                     query(where(Event.CONST_FIELD_PUBLICATION_CORRELATION_ID).is(correlationId.toString())),
                     ClassCustomerEvent.class);
@@ -81,10 +80,10 @@ public class EventProcessor {
                                 .set(Event.CONST_FIELD_PUBLISHED, true)
                                 .set(Event.CONST_FIELD_PUBLICATION_CORRELATION_ID, ""),
                         this.collectionName);
-                this.log.error("Event message sent: {}", event.toString());
+                this.log.info("Event sent: {}", event.toString());
             }
         } catch (Exception ex) {
-            this.log.error("Sending event message: {} with error: {}", event.toString(), ex.toString());
+            this.log.error("Sending event: {} with error: {}", event.toString(), ex.toString());
         }
     }
 

@@ -2,26 +2,29 @@ package com.elipcero.classcustomerschool.message;
 
 import com.elipcero.classcustomerschool.domain.ClassCustomer;
 import com.elipcero.classcustomerschool.domain.ClassCustomerEvent;
+import com.elipcero.schoolcore.eventsourcing.EventMessage;
 
 public class Converter {
 
-    public static ClassCustomerEvent convertToClassCustomerEvent(long eventId, ClassCustomerMessage message) {
+    public static ClassCustomerEvent convertToClassCustomerEvent(long eventId, EventMessage<ClassCustomer> message) {
+        ClassCustomer classCustomer = message.getEntity();
         return new ClassCustomerEvent(
                 eventId,
                 message.getEventType(),
                 ClassCustomer.builder()
-                        .clientId(message.getClientId())
-                        .classCalendarId(message.getClassCalendarId())
-                        .classCalendarDayId(message.getClassCalendarDayId()).build()
+                        .clientId(classCustomer.getClientId())
+                        .classCalendarId(classCustomer.getClassCalendarId())
+                        .classCalendarDayId(classCustomer.getClassCalendarDayId()).build()
         );
     }
 
-    public static ClassCustomerMessage convertToClassCustomerMessage(ClassCustomerEvent event) {
+    public static EventMessage<ClassCustomer> convertToClassCustomerMessage(ClassCustomerEvent event) {
         ClassCustomer entity = event.getEntity();
-        return ClassCustomerMessage.builder()
-                .classCalendarDayId(entity.getClassCalendarDayId())
-                .classCalendarId(entity.getClassCalendarId())
-                .clientId(entity.getClientId())
-                .eventType(event.getEventType()).build();
+        return new EventMessage(
+                event.getEventType(),
+                ClassCustomer.builder()
+                    .classCalendarDayId(entity.getClassCalendarDayId())
+                    .classCalendarId(entity.getClassCalendarId())
+                    .clientId(entity.getClientId()));
     }
 }

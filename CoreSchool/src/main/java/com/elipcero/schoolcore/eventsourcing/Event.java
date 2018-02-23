@@ -1,4 +1,4 @@
-package com.elipcero.classcustomerschool.domain;
+package com.elipcero.schoolcore.eventsourcing;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

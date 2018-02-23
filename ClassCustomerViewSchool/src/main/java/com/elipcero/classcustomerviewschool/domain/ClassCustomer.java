@@ -1,13 +1,11 @@
-package com.elipcero.classcustomerschool.message;
+package com.elipcero.classcustomerviewschool.domain;
 
 import lombok.Builder;
 import lombok.Getter;
 
 @Getter
 @Builder
-public class ClassCustomerMessage {
-
-    private String eventType;
+public class ClassCustomer {
     private int clientId;
     private int classCalendarId;
     private int classCalendarDayId;

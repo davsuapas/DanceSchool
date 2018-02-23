@@ -7,7 +7,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 @Getter
 @Builder
-@Document
+@Document(collection="Counter")
 public class Counter {
     @Id private long id;
     private long count;

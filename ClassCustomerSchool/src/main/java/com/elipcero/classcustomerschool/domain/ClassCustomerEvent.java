@@ -1,5 +1,6 @@
 package com.elipcero.classcustomerschool.domain;
 
+import com.elipcero.schoolcore.eventsourcing.Event;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;

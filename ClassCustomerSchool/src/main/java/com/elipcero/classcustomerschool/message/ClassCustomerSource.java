@@ -5,6 +5,6 @@ import org.springframework.messaging.MessageChannel;
 
 public interface ClassCustomerSource {
 
-    @Output("class-customer")
+    @Output("ClassCustomerEvent")
     MessageChannel output();
 }
