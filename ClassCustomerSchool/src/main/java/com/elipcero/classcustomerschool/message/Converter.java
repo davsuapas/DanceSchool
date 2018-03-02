@@ -25,6 +25,6 @@ public class Converter {
                 ClassCustomer.builder()
                     .classCalendarDayId(entity.getClassCalendarDayId())
                     .classCalendarId(entity.getClassCalendarId())
-                    .clientId(entity.getClientId()));
+                    .clientId(entity.getClientId()).build());
     }
 }

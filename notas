@@ -1,9 +1,11 @@
 curl "http://localhost:8762/customerproxy/customers/search/econdName?secondName=Suarez&projection=descriptor"
 
-curl -X POST -H "Content-Type: application/json" -d '[{"eventType":"ClientAssigned","clientId":1,"classCalendarId":1,"classCalendarDayId":1},{"eventType":"ClientAssigned","clientId":1,"classCalendarId":1,"classCalendarDayId":1}]' http://localhost:8762/classcustomerproxy/classcustomers/registers
+curl -X POST -H "Content-Type: application/json" -d '[{"eventType":"ClientAssigned","entity":{"clientId":1,"classCalendarId":1,"classCalendarDayId":1}},{"eventType":"ClientAssigned","entity":{"clientId":1,"classCalendarId":1,"classCalendarDayId":1}}]' http://localhost:8762/classcustomerproxy/classcustomers/registers
 
 docker start mysql-dev
 
+docker stop admiring_roentgen
+docker rm admiring_roentgen
 docker run -p 2181:2181 -p 9092:9092 --env ADVERTISED_HOST=192.168.100.150 --env ADVERTISED_PORT=9092 spotify/kafka
-
 docker start admiring_roentgen
+

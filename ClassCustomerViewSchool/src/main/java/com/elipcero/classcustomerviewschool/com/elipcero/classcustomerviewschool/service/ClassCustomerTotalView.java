@@ -1,4 +1,4 @@
-package com.elipcero.classcustomerviewschool.com.elipcero.classcustomerviewschool.service;
+package com.elipcero.classcustomerviewschool.service;
 
 import com.elipcero.classcustomerviewschool.domain.ClassCustomer;
 import com.elipcero.classcustomerviewschool.domain.ClassCustomerDayTotal;
