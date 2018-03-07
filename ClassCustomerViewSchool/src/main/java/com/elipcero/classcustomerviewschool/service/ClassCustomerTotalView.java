@@ -30,10 +30,10 @@ public class ClassCustomerTotalView {
     }
 
     @StreamListener(ClassCustomerConsumer.INPUT)
-    public void ConsumeClassCustomerEvent(EventMessage<ClassCustomer> event) {
+    public void ConsumeClassCustomerEvent(EventMessage<ClassCustomer> eventMessage) {
 
-        final ClassCustomer entity = event.getEntity();
-        final int inc = event.getEventType() == "ClientAssigned" ? 1 : -1;
+        final ClassCustomer entity = eventMessage.getEntity();
+        final int inc = eventMessage.getEventType() == "ClientAssigned" ? 1 : -1;
 
         mongo.updateFirst(
                 query(
