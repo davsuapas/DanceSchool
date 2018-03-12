@@ -3,17 +3,16 @@ jar {
     version = '1.0.0'
 }
 
-ext["thymeleaf.version"] = "3.0.2.RELEASE" 
+ext["thymeleaf.version"] = "3.0.9.RELEASE"
 ext["thymeleaf-layout-dialect.version"] = "2.2.1" 
 
 dependencies {
-	compile("org.springframework.boot:spring-boot-devtools")
 	compile('com.fasterxml.jackson.datatype:jackson-datatype-jsr310')
 	compile('org.springframework.boot:spring-boot-starter-thymeleaf')
 	compile('org.springframework.boot:spring-boot-starter-web')
-	compile('org.springframework.cloud:spring-cloud-starter-eureka')
+	compile('org.springframework.cloud:spring-cloud-starter-netflix-eureka-client')
 	compile('org.springframework.boot:spring-boot-starter-hateoas')
-	compile('org.springframework.cloud:spring-cloud-starter-feign')
+	compile('org.springframework.cloud:spring-cloud-starter-openfeign')
 	
 	compile project(':CoreSchool')
 }

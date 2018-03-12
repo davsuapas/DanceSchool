@@ -36,6 +36,6 @@ public class ClassCustomerEventController {
             classCustomers.add(Converter.convertToClassCustomerEvent(this.counterService.count(), classCustomerMessage));
         }
 
-        return ResponseEntity.ok(repository.save(classCustomers));
+        return ResponseEntity.ok(repository.saveAll(classCustomers));
     }
 }

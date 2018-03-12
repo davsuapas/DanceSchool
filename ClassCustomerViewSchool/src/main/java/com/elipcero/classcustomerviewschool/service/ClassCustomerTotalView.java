@@ -33,7 +33,7 @@ public class ClassCustomerTotalView {
     public void ConsumeClassCustomerEvent(EventMessage<ClassCustomer> eventMessage) {
 
         final ClassCustomer entity = eventMessage.getEntity();
-        final int inc = eventMessage.getEventType() == "ClientAssigned" ? 1 : -1;
+        final int inc = eventMessage.getEventType().equals("ClientAssigned") ? 1 : -1;
 
         mongo.updateFirst(
                 query(
