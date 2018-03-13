@@ -1,0 +1,36 @@
+server:
+  port: 8083
+
+spring:
+  application:
+    name: classcustomer-school
+  data:
+    mongodb:
+      host: 172.17.0.2
+      database: School
+  cloud:
+    stream:
+      kafka:
+        binder:
+          brokers: 192.168.100.150
+          zkNodes: 192.168.100.150
+        bindings:
+          ClassCustomerEvent:
+            producer:
+              sync: true
+
+school:
+  classcustomer:
+    eventsourcing:
+      processor:
+        limitForReading: 50
+        lockedMessageMaxTimeInMinutes: 1
+
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/

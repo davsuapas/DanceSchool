@@ -1,0 +1,29 @@
+server:
+  port: 8084
+
+spring:
+  application:
+    name: classcustomerview-school
+  data:
+    mongodb:
+      host: 172.17.0.2
+      database: School
+  cloud:
+    stream:
+      bindings:
+          ClassCustomerEvent:
+            group: classcustomerview
+      kafka:
+        binder:
+          brokers: 192.168.100.150
+          zkNodes: 192.168.100.150
+
+
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
