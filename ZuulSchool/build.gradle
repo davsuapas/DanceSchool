@@ -1,9 +1,0 @@
-jar {
-    baseName = 'zuul-school'
-    version = '1.0.0'
-}
-
-dependencies {
-    compile('org.springframework.cloud:spring-cloud-starter-netflix-eureka-client')
-    compile('org.springframework.cloud:spring-cloud-starter-netflix-zuul')
-}
