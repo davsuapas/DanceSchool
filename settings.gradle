@@ -1,8 +1,0 @@
-include "EurekaSchool"
-include "ZuulSchool"
-include "CoreSchool"
-include "CustomerSchool"
-include "WebSchool"
-include "ClassroomSchool"
-include "ClassCustomerSchool"
-include "ClassCustomerViewSchool"
