@@ -3,13 +3,13 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.elipcero.customerschool</groupId>
-	<artifactId>customer-school</artifactId>
-	<version>1.0.0</version>
-	<packaging>jar</packaging>
+    <groupId>com.elipcero.classroomschool</groupId>
+    <artifactId>classroom-school</artifactId>
+    <version>1.0.0</version>
+    <packaging>jar</packaging>
 
-	<name>CustomerSchool</name>
-	<description>School Customer Service</description>
+    <name>ClassroomSchool</name>
+    <description>School Classroom Service</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -36,6 +36,10 @@
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-hateoas</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 		<dependency>
@@ -50,11 +54,11 @@
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-netflix-ribbon</artifactId>
 		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-hateoas</artifactId>
-		</dependency>
 
+        <dependency>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <artifactId>jackson-datatype-jsr310</artifactId>
+        </dependency>
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
@@ -71,7 +75,7 @@
 			<scope>test</scope>
 		</dependency>
 
-		<dependency>
+        <dependency>
             <groupId>com.elipcero.schoolcore</groupId>
             <artifactId>core-school</artifactId>
             <version>1.0.0</version>

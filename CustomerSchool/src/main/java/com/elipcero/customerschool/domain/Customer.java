@@ -4,7 +4,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 
 import com.elipcero.schoolcore.AbstractDomain;
-
 import lombok.Getter;
 import lombok.ToString;
 
