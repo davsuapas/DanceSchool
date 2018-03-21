@@ -1,7 +1,7 @@
 package com.elipcero.schoolweb.classroom.services;
 
 import com.elipcero.schoolweb.classroom.domains.ClassCalendar;
-import org.springframework.cloud.netflix.feign.FeignClient;
+import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.hateoas.Resource;
 import org.springframework.hateoas.Resources;
 import org.springframework.web.bind.annotation.*;

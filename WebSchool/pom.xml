@@ -23,6 +23,8 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
 		<spring-cloud.version>Finchley.M8</spring-cloud.version>
+        <thymeleaf-layout-dialect.version>2.2.2</thymeleaf-layout-dialect.version>
+        <thymeleaf.version>3.0.9.RELEASE</thymeleaf.version>
 	</properties>
 
 	<dependencies>
@@ -62,6 +64,12 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
+        <dependency>
+            <groupId>com.elipcero.schoolcore</groupId>
+            <artifactId>core-school</artifactId>
+            <version>1.0.0</version>
+        </dependency>
 	</dependencies>
 
 	<dependencyManagement>

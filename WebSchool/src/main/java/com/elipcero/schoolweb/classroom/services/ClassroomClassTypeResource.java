@@ -1,17 +1,11 @@
 package com.elipcero.schoolweb.classroom.services;
 
-import org.springframework.cloud.netflix.feign.FeignClient;
+import com.elipcero.schoolweb.classroom.domains.ClassroomClassType;
+import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.hateoas.Resource;
 import org.springframework.hateoas.Resources;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-
-import com.elipcero.schoolweb.classroom.domains.ClassroomClassType;
+import org.springframework.web.bind.annotation.*;
 
 @FeignClient(name = "classroom-school")
 public interface ClassroomClassTypeResource {

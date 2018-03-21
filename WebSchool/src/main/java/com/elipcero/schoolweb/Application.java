@@ -10,7 +10,7 @@ import org.springframework.boot.autoconfigure.jackson.Jackson2ObjectMapperBuilde
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
-import org.springframework.cloud.netflix.feign.EnableFeignClients;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
 import org.springframework.hateoas.config.EnableHypermediaSupport;
 

@@ -26,12 +26,12 @@ public class ClassCalendarService {
 		ClassCalendar classCalendarSaved;
 
 		if (classCalendarForMerging.getId() == null) {
-			classCalendarForMerging.setClassroom(classroomRepository.findOne(classCalendarForMerging.getClassroom().getId()));
-			classCalendarForMerging.setClassType(classTypeRepository.findOne(classCalendarForMerging.getClassType().getId()));
+			classCalendarForMerging.setClassroom(classroomRepository.findById(classCalendarForMerging.getClassroom().getId()).get());
+			classCalendarForMerging.setClassType(classTypeRepository.findById(classCalendarForMerging.getClassType().getId()).get());
 			classCalendarSaved = repository.save(classCalendarForMerging);
 		}
 		else {
-			ClassCalendar classCalendarSource = repository.findOne(classCalendarForMerging.getId());
+			ClassCalendar classCalendarSource = repository.findById(classCalendarForMerging.getId()).get();
 			classCalendarSource.setStart(classCalendarForMerging.getStart());
 			classCalendarSource.setEnd(classCalendarForMerging.getEnd());
 

@@ -1,14 +1,12 @@
 package com.elipcero.classroomschool.repositories;
 
-import org.springframework.data.rest.core.annotation.HandleBeforeCreate;
-import org.springframework.data.rest.core.annotation.RepositoryEventHandler;
-
 import com.elipcero.classroomschool.domains.ClassType;
 import com.elipcero.classroomschool.domains.Classroom;
 import com.elipcero.classroomschool.domains.ClassroomClassType;
-
 import lombok.AllArgsConstructor;
 import lombok.NonNull;
+import org.springframework.data.rest.core.annotation.HandleBeforeCreate;
+import org.springframework.data.rest.core.annotation.RepositoryEventHandler;
 
 @RepositoryEventHandler
 @AllArgsConstructor
@@ -20,11 +18,11 @@ public class ClassroomClassTypeEventHandler {
 	@HandleBeforeCreate
 	public void handlePersonCreate(ClassroomClassType entity) {
 		if (entity.getClassroom() == null) {
-			Classroom classroom = this.classroomRepository.findOne(entity.getId().getClassroom());
+			Classroom classroom = this.classroomRepository.findById(entity.getId().getClassroom()).get();
 			entity.setClassroom(classroom);
 		}
 		if (entity.getClassType() == null) {
-			ClassType classType = this.classTypeRepository.findOne(entity.getId().getClassType());
+			ClassType classType = this.classTypeRepository.findById(entity.getId().getClassType()).get();
 			entity.setClassType(classType);
 		}
 	}	
