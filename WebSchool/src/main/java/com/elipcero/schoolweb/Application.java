@@ -2,6 +2,7 @@ package com.elipcero.schoolweb;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import nz.net.ultraq.thymeleaf.LayoutDialect;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -34,4 +35,9 @@ public class Application {
 		_halObjectMapper.registerModule(new JavaTimeModule());
 		return builder -> builder.configure(_halObjectMapper);
 	}
+
+    @Bean
+    public LayoutDialect layoutDialect() {
+        return new LayoutDialect();
+    }
 }
