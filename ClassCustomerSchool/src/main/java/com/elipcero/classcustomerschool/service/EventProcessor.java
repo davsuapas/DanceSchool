@@ -37,8 +37,6 @@ public class EventProcessor {
     private final MongoOperations mongo;
     private final ClassCustomerSource source;
 
-    private final String collectionName;
-
     private final Logger log = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
@@ -48,7 +46,6 @@ public class EventProcessor {
 
         this.mongo = mongo;
         this.source = source;
-        this.collectionName = mongo.getCollectionName(ClassCustomerEvent.class);
     }
 
     @Scheduled(fixedDelay = 5000, initialDelay = 5000)
@@ -79,7 +76,7 @@ public class EventProcessor {
                         new Update()
                                 .set(Event.CONST_FIELD_PUBLISHED, true)
                                 .set(Event.CONST_FIELD_PUBLICATION_CORRELATION_ID, ""),
-                        this.collectionName);
+                        ClassCustomerEvent.class);
                 this.log.info("Event sent: {}", event.toString());
             }
         } catch (Exception ex) {
@@ -97,14 +94,14 @@ public class EventProcessor {
         for (ClassCustomerIdProjection event: events) {
             mongo.updateFirst(
                     query(
-                            where(Event.CONST_FIELD_PUBLICATION_EXPIRATION_DATE).lt(LocalDateTime.now())
-                            .and(Event.CONST_FIELD_ID).is(event.getId())
+                            where(Event.CONST_FIELD_ID).is(event.getId())
+                            .and(Event.CONST_FIELD_PUBLICATION_EXPIRATION_DATE).lt(LocalDateTime.now())
                     ),
                     new Update()
                             .set(Event.CONST_FIELD_PUBLICATION_EXPIRATION_DATE,
                                     LocalDateTime.now().plusMinutes(lockedMessageMaxTimeInMinutes))
                             .set(Event.CONST_FIELD_PUBLICATION_CORRELATION_ID, correlationId.toString()),
-                    this.collectionName
+                    ClassCustomerEvent.class
             );
        }
     }

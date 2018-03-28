@@ -6,7 +6,7 @@ spring:
     name: classcustomerview-school
   data:
     mongodb:
-      host: 172.17.0.2
+      host: localhost
       database: School
   cloud:
     stream:
@@ -15,9 +15,13 @@ spring:
             group: classcustomerview
       kafka:
         binder:
-          brokers: 192.168.100.150
-          zkNodes: 192.168.100.150
+          brokers: localhost
+          zkNodes: localhost
 
+school:
+  classcustomerview:
+    transaction:
+      timeStoredInMinutes: 60
 
 eureka:
   instance:

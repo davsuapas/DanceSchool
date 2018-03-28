@@ -1,16 +1,22 @@
 package com.elipcero.classcustomerviewschool.domain;
 
+import lombok.Builder;
 import lombok.Getter;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Getter
-@Document
+@Builder
+@Document(collection = "ClassCustomerDayTotal")
 public class ClassCustomerDayTotal {
 
-    public final static String CONST_FIELD_NAME_CLASSCALENDAR = "classCalendarId";
+    public final static String CONST_FIELD_NAME_CLASSCALENDARID = "_id";
     public final static String CONST_FIELD_NAME_CUSTOMERTOTALDAY = "customerTotalDay";
+    public final static String CONST_FIELD_NAME_EVENTTRANSACTION = "eventTransaction";
 
-    private int classCalendarId;
+    @Id
+    private long id;
+
     private int customerTotalDay1;
     private int customerTotalDay2;
     private int customerTotalDay3;
@@ -19,3 +25,4 @@ public class ClassCustomerDayTotal {
     private int customerTotalDay6;
     private int customerTotalDay7;
 }
+

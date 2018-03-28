@@ -6,14 +6,14 @@ spring:
     name: classcustomer-school
   data:
     mongodb:
-      host: 172.17.0.2
+      host: localhost
       database: School
   cloud:
     stream:
       kafka:
         binder:
-          brokers: 192.168.100.150
-          zkNodes: 192.168.100.150
+          brokers: localhost
+          zkNodes: localhost
         bindings:
           ClassCustomerEvent:
             producer:

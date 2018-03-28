@@ -2,8 +2,5 @@ curl "http://localhost:8762/customerproxy/customers/search/econdName?secondName=
 
 curl -X POST -H "Content-Type: application/json" -d '[{"eventType":"ClientAssigned","entity":{"clientId":1,"classCalendarId":1,"classCalendarDayId":1}},{"eventType":"ClientAssigned","entity":{"clientId":1,"classCalendarId":1,"classCalendarDayId":1}}]' http://localhost:8762/classcustomerproxy/classcustomers/registers
 
-docker start mysql-dev
-
-docker ps -a
-
-docker-compose -f docker-compose-single-broker.yml up
+sudo systemctl start kafka
+sudo systemctl start mongod

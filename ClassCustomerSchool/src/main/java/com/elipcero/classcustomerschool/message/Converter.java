@@ -21,6 +21,7 @@ public class Converter {
     public static EventMessage<ClassCustomer> convertToClassCustomerMessage(ClassCustomerEvent event) {
         ClassCustomer entity = event.getEntity();
         return new EventMessage(
+                event.getId(),
                 event.getEventType(),
                 ClassCustomer.builder()
                     .classCalendarDayId(entity.getClassCalendarDayId())
