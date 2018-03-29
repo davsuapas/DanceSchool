@@ -7,8 +7,6 @@ import com.elipcero.schoolcore.eventsourcing.EventMessage;
 import com.mongodb.DuplicateKeyException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.cloud.stream.annotation.EnableBinding;
-import org.springframework.cloud.stream.annotation.StreamListener;
 import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Service;
@@ -20,13 +18,12 @@ import static org.springframework.data.mongodb.core.query.Criteria.where;
 import static org.springframework.data.mongodb.core.query.Query.query;
 
 @Service
-@EnableBinding(ClassCustomerConsumer.class)
 public class ClassCustomerTotalView {
-
-    private final MongoOperations mongo;
 
     @Value("${school.classcustomerview.transaction.timeStoredInMinutes}")
     private int timeStoredInMinutes = 60;
+
+    private final MongoOperations mongo;
 
     @Autowired
     public ClassCustomerTotalView(MongoOperations mongo) {
@@ -34,25 +31,14 @@ public class ClassCustomerTotalView {
         this.mongo = mongo;
     }
 
-    @StreamListener(ClassCustomerConsumer.INPUT)
-    public void ConsumeClassCustomerEvent(EventMessage<ClassCustomer> eventMessage) {
-        CalculateDayTotalByCustomer(eventMessage);
-        RemoveTransactionsProcessedAndExpired(eventMessage);
+    public void calculate(EventMessage<ClassCustomer> eventMessage) {
+        calculateDayTotalByCustomer(eventMessage);
+        removeTransactionsProcessedAndExpired(eventMessage);
     }
 
-    private void RemoveTransactionsProcessedAndExpired(EventMessage<ClassCustomer> eventMessage) {
+    private void calculateDayTotalByCustomer(EventMessage<ClassCustomer> eventMessage) {
         final ClassCustomer entity = eventMessage.getEntity();
-        mongo.updateMulti(
-                query(where(ClassCustomerDayTotal.CONST_FIELD_NAME_CLASSCALENDARID).is(entity.getClassCalendarId())),
-                new Update().pull(ClassCustomerDayTotal.CONST_FIELD_NAME_EVENTTRANSACTION,
-                        query(where(EventTransaction.CONST_FIELD_NAME_EXPIRATIONDATE).lt(LocalDateTime.now()))),
-                ClassCustomerDayTotal.class
-        );
-    }
-
-    private void CalculateDayTotalByCustomer(EventMessage<ClassCustomer> eventMessage) {
-        final ClassCustomer entity = eventMessage.getEntity();
-        final int inc = eventMessage.getEventType().equals("ClientAssigned") ? 1 : -1;
+        final int inc = eventMessage.getEventType().equals(ClassCustomerEvent.CONST_EVENT_CLIENT_ASSIGNED) ? 1 : -1;
 
         // If no exists insert, otherwise it's not do nothing
         if (!mongo.exists(query(where(ClassCustomerDayTotal.CONST_FIELD_NAME_CLASSCALENDARID).is(entity.getClassCalendarId())), ClassCustomerDayTotal.class)) {
@@ -79,6 +65,17 @@ public class ClassCustomerTotalView {
                                     .eventId(eventMessage.getId())
                                     .expirationDate(LocalDateTime.now().plusMinutes(this.timeStoredInMinutes)).build()),
             ClassCustomerDayTotal.class
+        );
+    }
+
+    private void removeTransactionsProcessedAndExpired(EventMessage<ClassCustomer> eventMessage) {
+        final ClassCustomer entity = eventMessage.getEntity();
+        // Avoid collections very big
+        mongo.updateMulti(
+                query(where(ClassCustomerDayTotal.CONST_FIELD_NAME_CLASSCALENDARID).is(entity.getClassCalendarId())),
+                new Update().pull(ClassCustomerDayTotal.CONST_FIELD_NAME_EVENTTRANSACTION,
+                        query(where(EventTransaction.CONST_FIELD_NAME_EXPIRATIONDATE).lt(LocalDateTime.now()))),
+                ClassCustomerDayTotal.class
         );
     }
 

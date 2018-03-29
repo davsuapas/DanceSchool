@@ -11,6 +11,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class ClassCustomer {
     private int clientId;
+    private String clientName;
     private int classCalendarId;
+    private String classCalendarName;
     private int classCalendarDayId;
 }

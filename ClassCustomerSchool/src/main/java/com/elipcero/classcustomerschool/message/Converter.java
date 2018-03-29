@@ -13,7 +13,9 @@ public class Converter {
                 message.getEventType(),
                 ClassCustomer.builder()
                         .clientId(classCustomer.getClientId())
+                        .clientName(classCustomer.getClientName())
                         .classCalendarId(classCustomer.getClassCalendarId())
+                        .classCalendarName(classCustomer.getClassCalendarName())
                         .classCalendarDayId(classCustomer.getClassCalendarDayId()).build()
         );
     }
@@ -24,8 +26,11 @@ public class Converter {
                 event.getId(),
                 event.getEventType(),
                 ClassCustomer.builder()
-                    .classCalendarDayId(entity.getClassCalendarDayId())
+                    .clientId(entity.getClientId())
+                    .clientName(entity.getClientName())
                     .classCalendarId(entity.getClassCalendarId())
-                    .clientId(entity.getClientId()).build());
+                    .classCalendarName(entity.getClassCalendarName())
+                    .classCalendarDayId(entity.getClassCalendarDayId())
+                        .build());
     }
 }

@@ -71,6 +71,11 @@
 			<scope>test</scope>
 		</dependency>
 
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+		</dependency>
+
         <dependency>
             <groupId>com.elipcero.schoolcore</groupId>
             <artifactId>core-school</artifactId>

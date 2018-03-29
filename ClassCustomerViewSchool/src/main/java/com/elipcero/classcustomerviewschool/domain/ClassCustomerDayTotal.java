@@ -15,7 +15,7 @@ public class ClassCustomerDayTotal {
     public final static String CONST_FIELD_NAME_EVENTTRANSACTION = "eventTransaction";
 
     @Id
-    private long id;
+    private int id;
 
     private int customerTotalDay1;
     private int customerTotalDay2;
