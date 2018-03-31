@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" data-layout-decorate="~{master}">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{master}">
 	<body>
 		<form th:action="@{/classroomclasstype/save/} + ${mode}" th:object="${classroomClassType}" method="post" layout:fragment="content">
 			<input th:if="${mode == 'updating'}" type="hidden" id="id" name="id" th:value="*{getId()}">

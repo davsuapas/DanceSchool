@@ -14,7 +14,7 @@ import java.util.Locale;
 public class ClassCalendarDay {
     private DayOfWeek dayOfWeek;
 
-    public String getFirstLetterOfDay() {
-        return dayOfWeek.getDisplayName(TextStyle.NARROW, Locale.getDefault());
+    public String getNameOfDay() {
+        return dayOfWeek.getDisplayName(TextStyle.SHORT, Locale.getDefault());
     }
 }

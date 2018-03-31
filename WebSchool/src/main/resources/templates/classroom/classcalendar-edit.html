@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" data-layout-decorate="~{master}">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{master}">
 	<body>
 		<form th:action="@{/classcalendar/save/}" th:object="${classCalendar}" method="post" layout:fragment="content">
 			<input th:if="${!classCalendar.isNew()}" type="hidden" id="id" name="id" th:value="*{getId()}">

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" data-layout-decorate="~{/classroom/master-classroom}">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{/classroom/master-classroom}">
 	<body>
 		<div layout:fragment="content-classroom">
 			<div th:if="${errorDescription}" snack-show='true' data-th-attr="snack-text=${errorDescription}"></div>

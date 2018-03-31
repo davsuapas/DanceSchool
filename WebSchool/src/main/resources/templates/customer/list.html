@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" data-layout-decorate="~{master}">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{master}">
 	<body>
 		<div layout:fragment="content">
 		
@@ -54,6 +54,7 @@
 					    	<input type="hidden" name="thirdName" th:value="*{thirdName}">
 			   				<a th:href="@{/customer/update/} + ${customer.id}" class="mdc-button mdc-button--compact mdc-card__action">Editar</a>
 			   				<button type="submit" class="mdc-button mdc-button--compact mdc-card__action">Eliminar</button>
+							<a th:href="@{/customer/classes/} + ${customer.id}" class="mdc-button mdc-button--compact mdc-card__action">Clases</a>
 			   			</form>
 	 				</section>
 				</div>

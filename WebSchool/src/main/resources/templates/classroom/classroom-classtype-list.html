@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" data-layout-decorate="~{/classroom/master-classroom}">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{/classroom/master-classroom}">
 <body>
 <div layout:fragment="content-classroom">
 	<h1 th:if="${classroomclassTypeRowsCols.size() == 0}" class="mdc-typography--display1">No existe ningún registro</h1>

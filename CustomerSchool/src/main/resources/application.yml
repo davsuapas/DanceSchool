@@ -5,9 +5,9 @@ spring:
   application:
     name: customer-school
   datasource:
-    url: jdbc:mysql://172.17.0.3/school
+    url: jdbc:mysql://localhost/school
     username: schoolservice
-    password: Aq1sw2de3fr4
+    password: 1234
     driverClassName: com.mysql.jdbc.Driver
   jpa:
     database-platform: org.hibernate.dialect.MySQLDialect
