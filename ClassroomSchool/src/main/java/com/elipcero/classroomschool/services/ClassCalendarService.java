@@ -73,4 +73,13 @@ public class ClassCalendarService {
 			});
 		classCalendarSource.getClassCalendarDay().removeAll(forRemoving);
 	}
+
+	public List<ClassCalendar> getClassCalendar() {
+		List<ClassCalendar> calendars = new ArrayList<>();
+		for (ClassCalendar calendar : repository.findAll()) {
+
+			calendars.add(calendar);
+		}
+		return calendars;
+	}
 }

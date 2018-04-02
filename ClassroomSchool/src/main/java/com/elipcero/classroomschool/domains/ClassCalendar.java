@@ -21,6 +21,7 @@ public class ClassCalendar extends AbstractDomain {
 	private Classroom classroom;
 	@ManyToOne
 	private ClassType classType;
+
 	private LocalTime start;
 	private LocalTime end;
 	
