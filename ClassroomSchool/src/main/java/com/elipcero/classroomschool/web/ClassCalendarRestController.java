@@ -1,6 +1,7 @@
 package com.elipcero.classroomschool.web;
 
 import com.elipcero.classroomschool.domains.ClassCalendar;
+import com.elipcero.classroomschool.domains.ClassCalendarView;
 import com.elipcero.classroomschool.services.ClassCalendarReaderService;
 import com.elipcero.classroomschool.services.ClassCalendarService;
 import lombok.NonNull;
@@ -25,7 +26,7 @@ public class ClassCalendarRestController {
 	private @NonNull final ClassCalendarReaderService serviceReader;
 
 	@GetMapping(value = "/classCalendars")
-	public List<ClassCalendar> getClassCalendar() {
+	public List<ClassCalendarView> getClassCalendar() {
 		return serviceReader.getClassCalendar();
 	}
 
