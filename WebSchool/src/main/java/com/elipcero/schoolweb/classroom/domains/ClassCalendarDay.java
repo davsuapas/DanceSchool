@@ -13,6 +13,7 @@ import java.util.Locale;
 @AllArgsConstructor
 public class ClassCalendarDay {
     private DayOfWeek dayOfWeek;
+    private int numberOfStudents;
 
     public String getNameOfDay() {
         return dayOfWeek.getDisplayName(TextStyle.SHORT, Locale.getDefault());

@@ -1,6 +1,7 @@
 package com.elipcero.classroomschool.web;
 
 import com.elipcero.classroomschool.domains.ClassCalendar;
+import com.elipcero.classroomschool.services.ClassCalendarReaderService;
 import com.elipcero.classroomschool.services.ClassCalendarService;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
@@ -21,10 +22,11 @@ import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
 public class ClassCalendarRestController {
 	
 	private @NonNull final ClassCalendarService service;
+	private @NonNull final ClassCalendarReaderService serviceReader;
 
 	@GetMapping(value = "/classCalendars")
 	public List<ClassCalendar> getClassCalendar() {
-		return service.getClassCalendar();
+		return serviceReader.getClassCalendar();
 	}
 
 	@PostMapping(value = "/classCalendars")

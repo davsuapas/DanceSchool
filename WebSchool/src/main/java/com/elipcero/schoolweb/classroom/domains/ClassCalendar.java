@@ -15,6 +15,13 @@ import java.util.stream.Collectors;
 public class ClassCalendar extends ClassCalendarBase {
     private Set<ClassCalendarDay> classCalendarDay;
 
+    public boolean isMaxOfStudents() {
+        return classCalendarDay.stream()
+                .max((d1, d2) -> Integer.compare(d1.getNumberOfStudents(), d2.getNumberOfStudents()))
+                .get()
+                .getNumberOfStudents() >
+    }
+
     public List getCalendarDayOrder() {
         return classCalendarDay.stream()
                 .sorted(Comparator.comparing(ClassCalendarDay::getDayOfWeek))
@@ -29,29 +36,15 @@ public class ClassCalendar extends ClassCalendarBase {
         edition.setClassroom(getClassroom());
         edition.setClassType(getClassType());
 
-        classCalendarDay.stream().forEach(day -> {
+        classCalendarDay.forEach(day -> {
             switch (day.getDayOfWeek()) {
-                case MONDAY:
-                    edition.setMonday(true);
-                    break;
-                case TUESDAY:
-                    edition.setTuesday(true);
-                    break;
-                case WEDNESDAY:
-                    edition.setWednesday(true);
-                    break;
-                case THURSDAY:
-                    edition.setThursday(true);
-                    break;
-                case FRIDAY:
-                    edition.setFriday(true);
-                    break;
-                case SATURDAY:
-                    edition.setSaturday(true);
-                    break;
-                case SUNDAY:
-                    edition.setSunday(true);
-                    break;
+                case MONDAY: edition.setMonday(true); break;
+                case TUESDAY: edition.setTuesday(true); break;
+                case WEDNESDAY: edition.setWednesday(true); break;
+                case THURSDAY: edition.setThursday(true); break;
+                case FRIDAY: edition.setFriday(true); break;
+                case SATURDAY: edition.setSaturday(true); break;
+                case SUNDAY: edition.setSunday(true); break;
             }
         });
 

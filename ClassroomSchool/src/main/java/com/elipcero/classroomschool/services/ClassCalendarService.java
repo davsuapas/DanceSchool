@@ -31,14 +31,15 @@ public class ClassCalendarService {
 			classCalendarSaved = repository.save(classCalendarForMerging);
 		}
 		else {
-			ClassCalendar classCalendarSource = repository.findById(classCalendarForMerging.getId()).get();
-			classCalendarSource.setStart(classCalendarForMerging.getStart());
-			classCalendarSource.setEnd(classCalendarForMerging.getEnd());
+			Optional<ClassCalendar> classCalendarSource = repository.findById(classCalendarForMerging.getId());
 
-			if (classCalendarSource != null) {
-				delete(classCalendarForMerging, classCalendarSource);
-				add(classCalendarForMerging, classCalendarSource);
-				classCalendarSaved = repository.save(classCalendarSource);
+			if (classCalendarSource.isPresent()) {
+				ClassCalendar classCalendar = classCalendarSource.get();
+				classCalendar.setStart(classCalendarForMerging.getStart());
+				classCalendar.setEnd(classCalendarForMerging.getEnd());
+				delete(classCalendarForMerging, classCalendar);
+				add(classCalendarForMerging, classCalendar);
+				classCalendarSaved = repository.save(classCalendar);
 			}
 			else {
 				return Optional.empty();
@@ -61,7 +62,7 @@ public class ClassCalendarService {
 	}
 
 	private static void delete(ClassCalendar classCalendarForMerging, ClassCalendar classCalendarSource) {
-		List<ClassCalendarDay> forRemoving = new ArrayList<ClassCalendarDay>();
+		List<ClassCalendarDay> forRemoving = new ArrayList<>();
 		classCalendarSource.getClassCalendarDay()
 			.forEach(c -> {
 				Optional<ClassCalendarDay> seekDay =
@@ -72,14 +73,5 @@ public class ClassCalendarService {
 				}
 			});
 		classCalendarSource.getClassCalendarDay().removeAll(forRemoving);
-	}
-
-	public List<ClassCalendar> getClassCalendar() {
-		List<ClassCalendar> calendars = new ArrayList<>();
-		for (ClassCalendar calendar : repository.findAll()) {
-
-			calendars.add(calendar);
-		}
-		return calendars;
 	}
 }
