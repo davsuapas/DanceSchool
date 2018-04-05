@@ -1,6 +1,5 @@
 package com.elipcero.schoolweb.classroom.domains;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -26,11 +25,4 @@ public abstract class ClassCalendarBase {
     @DateTimeFormat(iso = DateTimeFormat.ISO.TIME)
     @NotNull
     private LocalTime end;
-
-    @JsonIgnore
-    public String getName() {
-        return this.classroom.getName() + " - " + this.classType.getName();
-    }
-    @JsonIgnore
-    public String getDisplayTime() { return this.start + " - " + this.end; }
 }

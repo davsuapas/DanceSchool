@@ -1,6 +1,7 @@
 package com.elipcero.schoolweb.classroom.services;
 
 import com.elipcero.schoolweb.classroom.domains.ClassCalendar;
+import com.elipcero.schoolweb.classroom.domains.ClassCalendarView;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.hateoas.Resource;
 import org.springframework.hateoas.Resources;
@@ -22,5 +23,5 @@ public interface ClassCalendarResource {
     Resource<ClassCalendar> post(@RequestBody ClassCalendar classCalendar);
 
     @GetMapping(value = "classCalendars")
-	Resources<ClassCalendar> getAll();
+	Resources<ClassCalendarView> getAll();
 }

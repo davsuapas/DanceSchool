@@ -55,7 +55,7 @@ public class ClassCalendarList {
 		FillModel(model, Collections.singletonList(classCalendar));
 	}
 	
-	private static void FillModel(Model model, List<ClassCalendar> classCalendars) {
+	private static <T> void FillModel(Model model, List<T> classCalendars) {
 		ToolbarBuilder.Fill(model, ToolbarDomain.EnumMenuOption.Classroom);
 		ClassroomMenuBuilder.Fill(model, ClassRoomMenuDomain.EnumMenuOption.ClassCalendar);
 		model.addAttribute("classCalendarsRowsCols", DomainIterator.Create(classCalendars, 3));

@@ -4,10 +4,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
-import java.util.Comparator;
-import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 @Data
 @NoArgsConstructor
@@ -20,12 +17,6 @@ public class ClassCalendar extends ClassCalendarBase {
                 .max((d1, d2) -> Integer.compare(d1.getNumberOfStudents(), d2.getNumberOfStudents()))
                 .get()
                 .getNumberOfStudents() >
-    }
-
-    public List getCalendarDayOrder() {
-        return classCalendarDay.stream()
-                .sorted(Comparator.comparing(ClassCalendarDay::getDayOfWeek))
-                .collect(Collectors.toList());
     }
 
     public ClassCalendarEdition convertToEdition() {

@@ -4,7 +4,7 @@ import com.elipcero.schoolcore.CollectionUtil;
 import com.elipcero.schoolcore.ResourceUtil;
 import com.elipcero.schoolweb.classroom.domains.ClassCalendar;
 import com.elipcero.schoolweb.classroom.domains.ClassCalendarEdition;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.elipcero.schoolweb.classroom.domains.ClassCalendarView;
 import lombok.AllArgsConstructor;
 import lombok.NonNull;
 import org.springframework.hateoas.Resource;
@@ -29,7 +29,7 @@ public class ClassCalendarService {
 		this.classCalendarResource.delete(id);
 	}
 	
-	public List<ClassCalendar> getAll() {
+	public List<ClassCalendarView> getAll() {
 		return CollectionUtil.ConvertToList(this.classCalendarResource.getAll().getContent());
 	}
 	
