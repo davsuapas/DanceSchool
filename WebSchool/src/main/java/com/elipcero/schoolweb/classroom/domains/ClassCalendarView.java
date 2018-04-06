@@ -10,6 +10,8 @@ import java.util.stream.Collectors;
 @Getter
 public class ClassCalendarView {
 
+    private int id;
+
     private String classroomName;
     private String classTypeName;
 
@@ -29,5 +31,12 @@ public class ClassCalendarView {
         return classCalendarDayView.stream()
                 .sorted(Comparator.comparing(ClassCalendarDayView::getDayOfWeek))
                 .collect(Collectors.toList());
+    }
+
+    public boolean isMaxNumberOfStudents() {
+        return classCalendarDayView.stream()
+                .max(Comparator.comparing(ClassCalendarDayView::getNumberOfStudents))
+                .get()
+                .getNumberOfStudents() >= numberMaxOfStudents;
     }
 }

@@ -12,13 +12,6 @@ import java.util.Set;
 public class ClassCalendar extends ClassCalendarBase {
     private Set<ClassCalendarDay> classCalendarDay;
 
-    public boolean isMaxOfStudents() {
-        return classCalendarDay.stream()
-                .max((d1, d2) -> Integer.compare(d1.getNumberOfStudents(), d2.getNumberOfStudents()))
-                .get()
-                .getNumberOfStudents() >
-    }
-
     public ClassCalendarEdition convertToEdition() {
         ClassCalendarEdition edition = new ClassCalendarEdition();
         edition.setId(getId());

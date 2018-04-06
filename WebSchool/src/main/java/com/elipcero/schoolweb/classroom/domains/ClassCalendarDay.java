@@ -11,5 +11,4 @@ import java.time.DayOfWeek;
 @AllArgsConstructor
 public class ClassCalendarDay {
     private DayOfWeek dayOfWeek;
-    private int numberOfStudents;
 }

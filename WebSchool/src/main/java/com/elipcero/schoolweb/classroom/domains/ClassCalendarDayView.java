@@ -12,7 +12,7 @@ public class ClassCalendarDayView {
     private DayOfWeek dayOfWeek;
     private int numberOfStudents;
 
-    public String getNameOfDay() {
-        return dayOfWeek.getDisplayName(TextStyle.SHORT, Locale.getDefault());
+    public String getNameOfDayAndNumberOfStudents() {
+        return dayOfWeek.getDisplayName(TextStyle.SHORT, Locale.getDefault()) + " - " + numberOfStudents;
     }
 }

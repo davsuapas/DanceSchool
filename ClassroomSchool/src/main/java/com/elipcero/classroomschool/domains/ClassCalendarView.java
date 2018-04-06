@@ -11,6 +11,8 @@ import java.util.List;
 @Getter
 public class ClassCalendarView {
 
+    private int id;
+
     private String classTypeName;
     private String classroomName;
 

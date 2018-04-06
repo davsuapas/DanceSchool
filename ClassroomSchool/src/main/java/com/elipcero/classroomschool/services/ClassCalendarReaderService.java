@@ -3,8 +3,10 @@ package com.elipcero.classroomschool.services;
 import com.elipcero.classroomschool.domains.*;
 import com.elipcero.classroomschool.repositories.ClassCalendarRepository;
 import com.elipcero.classroomschool.repositories.ClassroomClassTypeRepository;
+import feign.FeignException;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -24,6 +26,7 @@ public class ClassCalendarReaderService {
 
         for (ClassCalendar calendar : classCalendarRepository.findAll()) {
             ClassCalendarView calendarView = ClassCalendarView.builder()
+                    .id(calendar.getId())
                     .classroomName(calendar.getClassroom().getName())
                     .classTypeName(calendar.getClassType().getName())
                     .start(calendar.getStart())
@@ -33,7 +36,7 @@ public class ClassCalendarReaderService {
                                     .getId())).get().getClassMax())
                     .build();
 
-            ClassCustomerDayTotal daysSummary = resource.getCalendarSummaryByClassId(calendar.getId()).getContent();
+            ClassCustomerDayTotal daysSummary = getCalendarSummaryByClassId(calendar);
             calendarView.setClassCalendarDayView(
                 calendar.getClassCalendarDay().stream().map(d -> {
                     int numberOfStudents = 0;
@@ -57,5 +60,19 @@ public class ClassCalendarReaderService {
             calendars.add(calendarView);
         }
         return calendars;
+    }
+
+    private ClassCustomerDayTotal getCalendarSummaryByClassId(ClassCalendar calendar) {
+        try {
+            return resource.getCalendarSummaryByClassId(calendar.getId()).getContent();
+        }
+        catch (FeignException ex) {
+            if (ex.status() == HttpStatus.NOT_FOUND.value()) {
+                return null;
+            }
+            else {
+                throw ex;
+            }
+        }
     }
 }
