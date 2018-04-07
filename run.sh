@@ -1,5 +1,4 @@
 #!/bin/bash
-# Shell script to open terminals
 
 sudo systemctl start mysql
 sudo systemctl start kafka
