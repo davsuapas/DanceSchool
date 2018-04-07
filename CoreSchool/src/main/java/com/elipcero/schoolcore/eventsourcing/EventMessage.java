@@ -8,6 +8,12 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class EventMessage<T> {
+
+    public EventMessage(String eventType, T entity) {
+        this.eventType = eventType;
+        this.entity = entity;
+    }
+
     private long id;
     private String eventType;
     private T entity;

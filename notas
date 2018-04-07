@@ -2,5 +2,7 @@ curl "http://localhost:8762/customerproxy/customers/search/econdName?secondName=
 
 curl -X POST -H "Content-Type: application/json" -d '[{"eventType":"ClientAssigned","entity":{"clientId":1,"clientName":"Cliente 1","classCalendarId":1,"classCalendarName":"Sala 1 - Aerobic","classCalendarDayId":1}},{"eventType":"ClientAssigned","entity":{"clientId":1,"clientName":"Cliente 1","classCalendarId":1,"classCalendarName":"Sala 1 - Aerobic","classCalendarDayId":1}}]' http://localhost:8762/classcustomerproxy/classcustomers/registers
 
+curl -X POST -H "Content-Type: application/json" -d '{"classId":1,"customerId":1,"customerName":"dd, dd, dd"}' http://localhost:8762/classroomproxy/customerClasses
+
 sudo systemctl start kafka
 sudo systemctl start mongod

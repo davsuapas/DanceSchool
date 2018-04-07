@@ -1,9 +1,9 @@
 package com.elipcero.schoolweb.customer.domain;
 
+import lombok.Data;
+
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-
-import lombok.Data;
 
 @Data
 public class CustomerDescriptor {
@@ -21,7 +21,11 @@ public class CustomerDescriptor {
 	@NotNull
 	@Size(max = 30)
 	private String thirdName;
-	
+
+	public String fullName() {
+		return firstName + ", " + getSurname();
+	}
+
 	public String getSurname() {
 		return secondName + ", " + thirdName;
 	}

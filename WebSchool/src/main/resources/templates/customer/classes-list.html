@@ -23,13 +23,13 @@
                             <h2 class="mdc-card__subtitle sch-card-violet" th:text="${clazz.getDaysOfWeek()}">Días de la semana</h2>
                         </section>
                         <section class="mdc-card__actions">
-                            <a th:href="@{/customer/} + ${customer.id} + @{/classes/} + ${clazz.id} + @{/delete/}" class="mdc-button mdc-button--compact mdc-card__action">Eliminar</a>
+                            <a th:href="@{/customer/} + ${customerId} + @{/classes/} + ${clazz.id} + @{/delete/}" class="mdc-button mdc-button--compact mdc-card__action">Eliminar</a>
                         </section>
                     </div>
                 </div>
             </div>
 
-            <a th:href="@{/customer/classes/add}">
+            <a th:href="@{/classcalendar/listforselect/customer/} + ${customerId}">
                 <button id="f2" class="mdc-fab app-fab--absolute" aria-label="Nuevo">
                     <span class="mdc-fab__icon material-icons">exposure_plus_1</span>
                 </button>

@@ -34,6 +34,12 @@ public class ClassCalendarList {
 		return CLASSROOM_CLASS_CALENDAR_LIST;
 	}
 
+	@GetMapping(value="/listforselect")
+	public String getClassCalendarListForSelect(Model model) {
+		FillModel(model, classCalendarService.getAll());
+		return "classroom/classcalendar-list-for-select";
+	}
+
 	@GetMapping(value="/{id}")
 	public String getClassCalendarById(@PathVariable int id, Model model) {
 		ClassCalendar classCalendar = this.classCalendarService.getClassCalendarById(id);
@@ -55,7 +61,7 @@ public class ClassCalendarList {
 		FillModel(model, Collections.singletonList(classCalendar));
 	}
 	
-	private static <T> void FillModel(Model model, List<T> classCalendars) {
+	static <T> void FillModel(Model model, List<T> classCalendars) {
 		ToolbarBuilder.Fill(model, ToolbarDomain.EnumMenuOption.Classroom);
 		ClassroomMenuBuilder.Fill(model, ClassRoomMenuDomain.EnumMenuOption.ClassCalendar);
 		model.addAttribute("classCalendarsRowsCols", DomainIterator.Create(classCalendars, 3));

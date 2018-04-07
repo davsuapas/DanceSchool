@@ -27,15 +27,15 @@ public class CustomerClassesList {
 
     @GetMapping(value="/classes/{id}")
     public String getClassesByCustomerId(@PathVariable int id, Model model) {
-        FillModel(model, service.getClassesByCustomerId(id));
+        FillModel(model, service.getClassesByCustomerId(id), id);
         return "customer/classes-list";
     }
 
-    private static void FillModel(Model model, Optional<CustomerClass> customerClass) {
+    private static void FillModel(Model model, Optional<CustomerClass> customerClass, int customerId) {
         List<Classes> classes = customerClass.map(c -> c.getClasses()).orElseGet(ArrayList::new);
         ToolbarBuilder.Fill(model, ToolbarDomain.EnumMenuOption.Customer);
         model.addAttribute("classesRowsCols", DomainIterator.Create(classes, 3));
-        model.addAttribute("customer", customerClass.get());
+        model.addAttribute("customerId", customerId);
     }
 
 }

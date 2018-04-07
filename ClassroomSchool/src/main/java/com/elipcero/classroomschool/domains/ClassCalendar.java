@@ -28,4 +28,9 @@ public class ClassCalendar extends AbstractDomain {
 	@ElementCollection
 	@CollectionTable(name="class_calendar_day", joinColumns=@JoinColumn(name="class_calendar_id"))
 	private Set<ClassCalendarDay> classCalendarDay;
+
+	@Transient
+	public String getName() {
+		return classroom.getName() + " - " + classType.getName();
+	}
 }
