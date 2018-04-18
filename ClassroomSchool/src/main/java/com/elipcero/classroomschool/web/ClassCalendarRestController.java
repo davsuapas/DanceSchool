@@ -9,10 +9,7 @@ import org.springframework.data.rest.webmvc.RepositoryRestController;
 import org.springframework.hateoas.Resource;
 import org.springframework.hateoas.Resources;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
 
@@ -22,6 +19,13 @@ public class ClassCalendarRestController {
 	
 	private @NonNull final ClassCalendarService serviceWriter;
 	private @NonNull final ClassCalendarReaderService serviceReader;
+
+	@GetMapping(value = "/classCalendars/{id}")
+	public ResponseEntity<?> getClassCalendarById(@PathVariable int id) {
+		return serviceReader.getClassCalendarView(id)
+				.map(c -> ResponseEntity.ok(new Resource<>(c)))
+				.orElse(ResponseEntity.notFound().build());
+	}
 
 	@GetMapping(value = "/classCalendars")
 	public ResponseEntity<?> getClassCalendar() {

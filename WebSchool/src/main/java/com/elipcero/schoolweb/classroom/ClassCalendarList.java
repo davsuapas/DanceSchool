@@ -1,6 +1,6 @@
 package com.elipcero.schoolweb.classroom;
 
-import com.elipcero.schoolweb.classroom.domains.ClassCalendar;
+import com.elipcero.schoolweb.classroom.domains.ClassCalendarView;
 import com.elipcero.schoolweb.classroom.services.ClassCalendarService;
 import com.elipcero.schoolweb.shared.domain.DomainIterator;
 import com.elipcero.schoolweb.shared.domain.ToolbarBuilder;
@@ -42,7 +42,7 @@ public class ClassCalendarList {
 
 	@GetMapping(value="/{id}")
 	public String getClassCalendarById(@PathVariable int id, Model model) {
-		ClassCalendar classCalendar = this.classCalendarService.getClassCalendarById(id);
+		ClassCalendarView classCalendar = this.classCalendarService.getClassCalendarById(id);
 		FillModel(model, classCalendar);
 		return CLASSROOM_CLASS_CALENDAR_LIST;
 	}
@@ -57,11 +57,11 @@ public class ClassCalendarList {
 		return REDIRECT_CLASSCALENDAR_LIST;
 	}
 
-	private static void FillModel(Model model, ClassCalendar classCalendar) {
+	private static void FillModel(Model model, ClassCalendarView classCalendar) {
 		FillModel(model, Collections.singletonList(classCalendar));
 	}
 	
-	static <T> void FillModel(Model model, List<T> classCalendars) {
+	static void FillModel(Model model, List<ClassCalendarView> classCalendars) {
 		ToolbarBuilder.Fill(model, ToolbarDomain.EnumMenuOption.Classroom);
 		ClassroomMenuBuilder.Fill(model, ClassRoomMenuDomain.EnumMenuOption.ClassCalendar);
 		model.addAttribute("classCalendarsRowsCols", DomainIterator.Create(classCalendars, 3));

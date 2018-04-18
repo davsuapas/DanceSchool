@@ -57,7 +57,7 @@ public class ClassCalendarEdit {
 		if (classCalendarEdition.isNew()) {
 			if (classCalendarService.IsDuplicated(classCalendarEdition)) {
 				ToolbarBuilder.Fill(model, ToolbarDomain.EnumMenuOption.Classroom);
-				bindingResult.reject("duplicated", "Ya existe un registro configurado para con este mismo tipo de clase y aula");
+				bindingResult.reject("duplicated", "Ya existe un registro configurado con este mismo tipo de clase y aula");
 				addReferencesToModel(model);
 				return VIEWNAME_CLASSCALENDAR_EDIT;
 			}

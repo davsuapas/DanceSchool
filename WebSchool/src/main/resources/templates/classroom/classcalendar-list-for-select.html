@@ -24,7 +24,7 @@
 						<div>
 							<div><h1 class="mdc-card__title mdc-card__title--large" th:text="${row.getName()}">Nombre</h1></div>
 							<div><h2 class="mdc-card__subtitle" th:text="${row.getDisplayTime()}">Time</h2></div>
-							<div th:each="day : ${row.getCalendarDayOrder()}">
+							<div th:each="day : ${row.getCalendarDaySorted()}">
 								<h2 class="mdc-card__subtitle sch-card-violet" th:text="${day.getNameOfDayAndNumberOfStudents()}">Día de la semana</h2>
 							</div>
 						</div>

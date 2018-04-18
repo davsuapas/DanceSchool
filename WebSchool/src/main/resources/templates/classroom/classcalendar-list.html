@@ -12,14 +12,14 @@
 					<div>
 						<div><h1 class="mdc-card__title mdc-card__title--large" th:text="${row.getName()}">Nombre</h1></div>
 						<div><h2 class="mdc-card__subtitle" th:text="${row.getDisplayTime()}">Time</h2></div>
-						<div th:each="day : ${row.getCalendarDayOrder()}">
+						<div th:each="day : ${row.getCalendarDaySorted()}">
 							<h2 class="mdc-card__subtitle sch-card-violet" th:text="${day.getNameOfDayAndNumberOfStudents()}">Día de la semana</h2>
 						</div>
 					</div>
 				</section>
 				<section class="mdc-card__actions">
 					<a th:href="@{/classcalendar/update/} + ${row.getId()}" class="mdc-button mdc-button--compact mdc-card__action">Editar</a>
-					<a th:href="@{/classcalendar/delete/} + ${row.getId()}" class="mdc-button mdc-button--compact mdc-card__action">Eliminar</a>
+					<a th:if="${row.canRemove()}" th:href="@{/classcalendar/delete/} + ${row.getId()}" class="mdc-button mdc-button--compact mdc-card__action">Eliminar</a>
 				</section>
 			</div>
 		</div>

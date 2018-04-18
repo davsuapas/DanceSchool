@@ -18,11 +18,9 @@ public class ClassCalendarService {
 	
 	private @NonNull final ClassCalendarResource classCalendarResource;
 
-	public ClassCalendar getClassCalendarById(int id) {
-		Resource<ClassCalendar> resource = this.classCalendarResource.getClassCalendarById(id);
-		ClassCalendar classCalendar = resource.getContent();
-		classCalendar.setId(id);
-		return classCalendar;
+	public ClassCalendarView getClassCalendarById(int id) {
+		Resource<ClassCalendarView> resource = this.classCalendarResource.getClassCalendarById(id);
+		return resource.getContent();
 	}
 
 	public void delete(int id) {
