@@ -53,7 +53,7 @@
                                     <input type="checkbox"
                                            id="monday"
                                            th:field="*{monday}"
-                                           th:attrappend="${classCalendar.isCanEditMonday()} ? '' : 'disabled'"
+                                           th:disabled="${!classCalendar.isCanEditMonday()}"
                                            class="mdc-checkbox__native-control"/>
                                     <div class="mdc-checkbox__background">
                                         <svg class="mdc-checkbox__checkmark"
@@ -75,7 +75,7 @@
                                     <input type="checkbox"
                                            id="tuesday"
                                            th:field="*{tuesday}"
-                                           th:attrappend="${classCalendar.isCanEditTuesday()} ? '' : 'disabled'"
+                                           th:disabled="${!classCalendar.isCanEditTuesday()}"
                                            class="mdc-checkbox__native-control"/>
                                     <div class="mdc-checkbox__background">
                                         <svg class="mdc-checkbox__checkmark"
@@ -97,7 +97,7 @@
                                     <input type="checkbox"
                                            id="wednesday"
                                            th:field="*{wednesday}"
-                                           th:attrappend="${classCalendar.isCanEditWednesday()} ? '' : 'disabled'"
+                                           th:disabled="${!classCalendar.isCanEditWednesday()}"
                                            class="mdc-checkbox__native-control"/>
                                     <div class="mdc-checkbox__background">
                                         <svg class="mdc-checkbox__checkmark"
@@ -119,7 +119,7 @@
                                     <input type="checkbox"
                                            id="thursday"
                                            th:field="*{thursday}"
-                                           th:attrappend="${classCalendar.isCanEditThursday()} ? '' : 'disabled'"
+                                           th:disabled="${!classCalendar.isCanEditThursday()}"
                                            class="mdc-checkbox__native-control"/>
                                     <div class="mdc-checkbox__background">
                                         <svg class="mdc-checkbox__checkmark"
@@ -141,7 +141,7 @@
                                     <input type="checkbox"
                                            id="friday"
                                            th:field="*{friday}"
-                                           th:attrappend="${classCalendar.isCanEditFriday()} ? '' : 'disabled'"
+                                           th:disabled="${!classCalendar.isCanEditFriday()}"
                                            class="mdc-checkbox__native-control"/>
                                     <div class="mdc-checkbox__background">
                                         <svg class="mdc-checkbox__checkmark"
@@ -163,7 +163,7 @@
                                     <input type="checkbox"
                                            id="saturday"
                                            th:field="*{saturday}"
-                                           th:attrappend="${classCalendar.isCanEditSaturday()} ? '' : 'disabled'"
+                                           th:disabled="${!classCalendar.isCanEditSaturday()}"
                                            class="mdc-checkbox__native-control"/>
                                     <div class="mdc-checkbox__background">
                                         <svg class="mdc-checkbox__checkmark"
@@ -185,7 +185,7 @@
                                     <input type="checkbox"
                                            id="sunday"
                                            th:field="*{sunday}"
-                                           th:attrappend="${classCalendar.isCanEditSunday()} ? '' : 'disabled'"
+                                           th:disabled="${!classCalendar.isCanEditSunday()}"
                                            class="mdc-checkbox__native-control"/>
                                     <div class="mdc-checkbox__background">
                                         <svg class="mdc-checkbox__checkmark"

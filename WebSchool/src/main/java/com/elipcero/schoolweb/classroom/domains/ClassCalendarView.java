@@ -1,6 +1,7 @@
 package com.elipcero.schoolweb.classroom.domains;
 
 import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalTime;
 import java.util.Comparator;
@@ -10,7 +11,8 @@ import java.util.stream.Collectors;
 @Getter
 public class ClassCalendarView {
 
-    private int id;
+    @Setter
+    int id;
 
     private String classroomName;
     private String classTypeName;

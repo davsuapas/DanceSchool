@@ -20,6 +20,7 @@ public class ClassCalendarService {
 
 	public ClassCalendarView getClassCalendarById(int id) {
 		Resource<ClassCalendarView> resource = this.classCalendarResource.getClassCalendarById(id);
+		resource.getContent().setId(id);
 		return resource.getContent();
 	}
 
