@@ -20,7 +20,7 @@ public class CustomerClassService {
     public boolean registers(CustomerClass customerClass) {
         return calendarRepository.findById(customerClass.getClassId()).map( c -> {
             resource.registers(c.getClassCalendarDay().stream().map(d ->
-                new EventMessage<>("ClientAssigned",
+                new EventMessage<>("CustomerRegistered",
                         ClassCustomer.builder()
                             .classCalendarId(c.getId())
                             .classCalendarName(c.getName())
@@ -29,6 +29,22 @@ public class CustomerClassService {
                             .classCalendarId(d.getDayOfWeek().getValue()+1)
                        .build()
                 )).collect(Collectors.toList()));
+            return true;
+        }).orElse(false);
+    }
+
+    public boolean unRegister(int customerId, int classId) {
+        return calendarRepository.findById(classId).map( c -> {
+            resource.registers(c.getClassCalendarDay().stream().map(d ->
+                    new EventMessage<>("CustomerUnregistered",
+                            ClassCustomer.builder()
+                                    .classCalendarId(c.getId())
+                                    .classCalendarName(c.getName())
+                                    .clientId(customerId)
+                                    .clientName("")
+                                    .classCalendarId(d.getDayOfWeek().getValue()+1)
+                                    .build()
+                    )).collect(Collectors.toList()));
             return true;
         }).orElse(false);
     }

@@ -70,6 +70,10 @@ a {
 	color: blueviolet !important;
 }
 
+.sch-card-warning {
+	background: #f37a7a
+}
+
 /* float icons */
 #f1.app-fab--absolute.app-fab--absolute {
 	position: fixed;

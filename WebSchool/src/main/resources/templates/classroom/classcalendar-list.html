@@ -8,7 +8,7 @@
 	<div th:each="rows : ${classCalendarsRowsCols}" class="mdc-layout-grid">
 		<div th:each="row : ${rows}" class="mdc-layout-grid__cell mdc-layout-grid__cell--span-3">
 			<div class="mdc-card sch-card">
-				<section class="mdc-card__primary sch-card-primary" th:style="${row.isMaxNumberOfStudents()} ? 'background:#f37a7a' : ''">
+				<section class="mdc-card__primary sch-card-primary" th:classappend="${row.isMaxNumberOfStudents()} ? 'sch-card-warning' : ''">
 					<div>
 						<div><h1 class="mdc-card__title mdc-card__title--large" th:text="${row.getName()}">Nombre</h1></div>
 						<div><h2 class="mdc-card__subtitle" th:text="${row.getDisplayTime()}">Time</h2></div>

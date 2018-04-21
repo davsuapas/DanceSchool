@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.ArrayList;
@@ -29,6 +30,12 @@ public class CustomerClassesList {
     public String getClassesByCustomerId(@PathVariable int id, Model model) {
         FillModel(model, service.getClassesByCustomerId(id), id);
         return "customer/classes-list";
+    }
+
+    @PostMapping(value = "customer/{customerId}/classes/{classId}/delete")
+    private String delete(@PathVariable int customerId, @PathVariable int classId) {
+        service.delete(customerId, classId);
+        return String.format("redirect:/customer/classes/%s", customerId);
     }
 
     private static void FillModel(Model model, Optional<CustomerClass> customerClass, int customerId) {

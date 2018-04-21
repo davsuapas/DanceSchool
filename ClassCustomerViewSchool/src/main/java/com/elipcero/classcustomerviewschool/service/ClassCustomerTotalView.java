@@ -38,7 +38,7 @@ public class ClassCustomerTotalView {
 
     private void calculateDayTotalByCustomer(EventMessage<ClassCustomer> eventMessage) {
         final ClassCustomer entity = eventMessage.getEntity();
-        final int inc = eventMessage.getEventType().equals(ClassCustomerEvent.CONST_EVENT_CLIENT_ASSIGNED) ? 1 : -1;
+        final int inc = eventMessage.getEventType().equals(ClassCustomerEvent.CONST_EVENT_CUSTOMER_REGISTERED) ? 1 : -1;
 
         // If no exists insert, otherwise it's not do nothing
         if (!mongo.exists(query(where(ClassCustomerDayTotal.CONST_FIELD_NAME_CLASSCALENDARID).is(entity.getClassCalendarId())), ClassCustomerDayTotal.class)) {

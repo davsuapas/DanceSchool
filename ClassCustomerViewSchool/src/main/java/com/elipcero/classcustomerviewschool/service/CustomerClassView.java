@@ -31,10 +31,10 @@ public class CustomerClassView {
     public void selectOrUnSelected(EventMessage<ClassCustomer> eventMessage) {
         ClassCustomer entity = eventMessage.getEntity();
 
-        if (eventMessage.getEventType().equals(ClassCustomerEvent.CONST_EVENT_CLIENT_ASSIGNED)) {
+        if (eventMessage.getEventType().equals(ClassCustomerEvent.CONST_EVENT_CUSTOMER_REGISTERED)) {
             insertIfNotExists(entity);
         }
-        else {
+        else if (eventMessage.getEventType().equals(ClassCustomerEvent.CONST_EVENT_CUSTOMER_UNREGISTERED)) {
             removeIfExists(entity);
         }
     }

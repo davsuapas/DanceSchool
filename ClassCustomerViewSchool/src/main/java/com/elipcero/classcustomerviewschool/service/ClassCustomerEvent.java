@@ -13,7 +13,8 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class ClassCustomerEvent {
 
-    public static final String CONST_EVENT_CLIENT_ASSIGNED = "ClientAssigned";
+    public static final String CONST_EVENT_CUSTOMER_REGISTERED = "CustomerRegistered";
+    public static final String CONST_EVENT_CUSTOMER_UNREGISTERED = "CustomerUnregistered";
 
     @NonNull private ClassCustomerTotalView classCustomerTotalView;
     @NonNull private CustomerClassView customerClassView;
