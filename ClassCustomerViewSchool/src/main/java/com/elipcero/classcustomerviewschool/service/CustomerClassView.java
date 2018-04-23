@@ -117,7 +117,7 @@ public class CustomerClassView {
                 new Update()
                         .push(CustomerClass.CONST_FIELD_NAME_CLASSES,
                                 Classes.builder()
-                                        .id(entity.getClassCalendarDayId())
+                                        .id(entity.getClassCalendarId())
                                         .name(entity.getClassCalendarName())
                                         .day(Collections.singletonList(
                                             DayOfWeek.of(entity.getClassCalendarDayId())
