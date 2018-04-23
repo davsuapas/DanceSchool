@@ -45,6 +45,6 @@ public class ClassCalendarListForSelect {
 						.customerId(customerId)
 						.customerName(customerService.getCustomerById(customerId).fullName())
 					.build());
-		return String.format("redirect:/customer/classes/{}", customerId);
+		return String.format("redirect:/customer/classes/%s", customerId);
 	}
 }

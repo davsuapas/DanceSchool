@@ -22,12 +22,12 @@ public class CustomerClassService {
             resource.registers(c.getClassCalendarDay().stream().map(d ->
                 new EventMessage<>("CustomerRegistered",
                         ClassCustomer.builder()
-                            .classCalendarId(c.getId())
-                            .classCalendarName(c.getName())
-                            .clientId(customerClass.getCustomerId())
-                            .clientName(customerClass.getCustomerName())
-                            .classCalendarId(d.getDayOfWeek().getValue()+1)
-                       .build()
+                                .classCalendarId(c.getId())
+                                .classCalendarName(c.getName())
+                                .clientId(customerClass.getCustomerId())
+                                .clientName(customerClass.getCustomerName())
+                                .classCalendarDayId(d.getDayOfWeek().getValue())
+                                .build()
                 )).collect(Collectors.toList()));
             return true;
         }).orElse(false);
@@ -42,7 +42,7 @@ public class CustomerClassService {
                                     .classCalendarName(c.getName())
                                     .clientId(customerId)
                                     .clientName("")
-                                    .classCalendarId(d.getDayOfWeek().getValue()+1)
+                                    .classCalendarDayId(d.getDayOfWeek().getValue())
                                     .build()
                     )).collect(Collectors.toList()));
             return true;
