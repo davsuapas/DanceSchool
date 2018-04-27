@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class ClassCalendarReaderService {
 
-    @NonNull private final ClassCustomerTotalViewResource resource;
+    @NonNull private final ClassCustomerViewResource resource;
     @NonNull private final ClassCalendarRepository classCalendarRepository;
     @NonNull private final ClassroomClassTypeRepository classroomClassTypeRepository;
 

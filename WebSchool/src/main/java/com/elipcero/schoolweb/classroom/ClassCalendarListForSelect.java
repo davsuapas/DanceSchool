@@ -35,7 +35,10 @@ public class ClassCalendarListForSelect {
 
 	@ExceptionController(
 			viewName=REDIRECT_CLASSROOM_CLASSCALENDAR_LIST_FOR_SELECT,
-			messages="404;Posiblemente el cliente o la clase han sido eliminados"
+			messages={
+					"404;Posiblemente el cliente o la clase han sido eliminados",
+					"406;Esta clase ya se encuentra asignada al cliente"
+			}
 	)
 	@GetMapping(value="/select/class/{classId}/customer/{customerId}")
 	public String select(@PathVariable int classId, @PathVariable int customerId) {
