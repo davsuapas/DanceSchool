@@ -1,0 +1,13 @@
+server:
+  port: 8888
+spring:
+  application:
+    name: configuration-school
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/davsuapas/DanceSchoolConfiguration
+          searchPaths: '*school'
+          username: davsuapas
+          password: Adlgs02!
