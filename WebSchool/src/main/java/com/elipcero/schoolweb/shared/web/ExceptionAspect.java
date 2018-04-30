@@ -71,7 +71,7 @@ public class ExceptionAspect {
 		return Arrays.stream(exceptionController.messages())
 				.filter(m -> Integer.parseInt(m.split(";")[0]) == ex.status())
 				.findFirst()
-				.orElse("0;Consulte con el administrador")
+				.orElse("0;Ha surgido un problema, consulte con su administrador")
 				.split(";")[1];
 	}
 
