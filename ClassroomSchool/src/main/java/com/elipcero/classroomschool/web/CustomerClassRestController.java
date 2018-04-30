@@ -17,7 +17,7 @@ public class CustomerClassRestController {
 
     @PostMapping(value = "/customerClasses")
     public ResponseEntity<?> register(@RequestBody CustomerClass customerClass) {
-        if (!classCustomerViewResource.existsCustomerAndClass(customerClass.getCustomerId(), customerClass.getClassId())) {
+        if (!classCustomerViewResource.existsByCustomerIdAndClassId(customerClass.getCustomerId(), customerClass.getClassId())) {
             if (service.registers(customerClass)) {
                 return ResponseEntity.ok().build();
             } else {

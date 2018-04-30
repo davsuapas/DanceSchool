@@ -13,5 +13,5 @@ public interface ClassCustomerViewResource {
     Resource<ClassCustomerDayTotal> getCalendarSummaryByClassId(@PathVariable("id") int id);
 
     @GetMapping(value = "customerClasses/search/existsByCustomerIdAndClassId?customerId={customerId}&classId={classId}")
-    boolean existsCustomerAndClass(@PathVariable("customerId") int customerId, @PathVariable("classId") int classId);
+    boolean existsByCustomerIdAndClassId(@PathVariable("customerId") int customerId, @PathVariable("classId") int classId);
 }

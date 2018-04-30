@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.constraints.NotNull;
 
@@ -19,8 +20,6 @@ import javax.validation.constraints.NotNull;
 @RequestMapping(value="/classcalendar")
 @AllArgsConstructor
 public class ClassCalendarListForSelect {
-
-	public static final String REDIRECT_CLASSROOM_CLASSCALENDAR_LIST_FOR_SELECT = "classroom/classcalendar-list-for-select";
 
 	private @NotNull final ClassCalendarService classCalendarService;
 	private @NonNull final CustomerService customerService;
@@ -30,18 +29,18 @@ public class ClassCalendarListForSelect {
 	public String getClassCalendarListForSelect(Model model, @PathVariable int id) {
 		model.addAttribute("customerId", id);
 		ClassCalendarList.FillModel(model, classCalendarService.getAll());
-		return REDIRECT_CLASSROOM_CLASSCALENDAR_LIST_FOR_SELECT;
+		return "classroom/classcalendar-list-for-select";
 	}
 
 	@ExceptionController(
-			viewName=REDIRECT_CLASSROOM_CLASSCALENDAR_LIST_FOR_SELECT,
+			viewName="redirect:/classcalendar/listforselect/customer/{customerId}",
 			messages={
 					"404;Posiblemente el cliente o la clase han sido eliminados",
 					"406;Esta clase ya se encuentra asignada al cliente"
 			}
 	)
 	@GetMapping(value="/select/class/{classId}/customer/{customerId}")
-	public String select(@PathVariable int classId, @PathVariable int customerId) {
+	public String select(@PathVariable("classId") int classId, @PathVariable("customerId") int customerId, RedirectAttributes redirectAttr) {
 		classCustomerResource.register(
 				CustomerClass.builder()
 						.classId(classId)
