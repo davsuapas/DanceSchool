@@ -10,5 +10,5 @@ zuul:
     customer-school: /customerproxy/**
     classroomschool: /classroomproxy/**
     classcustomerschool: /classcustomerproxy/**
-    classcustomerview-school: /classcustomerviewproxy/**
+    classcustomerviewschool: /classcustomerviewproxy/**
     
