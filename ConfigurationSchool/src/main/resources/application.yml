@@ -1,13 +1,22 @@
 server:
   port: 8888
+
 spring:
-  application:
-    name: configuration-school
   cloud:
     config:
       server:
         git:
-          uri: https://github.com/davsuapas/DanceSchoolConfiguration
-          searchPaths: '*school'
-          username: davsuapas
-          password: Adlgs02!
+          uri: https://github.com/DanceSchoolMicroservices/{application}
+          clone-on-start: true
+          force-pull: true
+          username: DanceSchoolMicroservices
+          password: DanceSchool8MS!
+
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/

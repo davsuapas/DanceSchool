@@ -7,7 +7,7 @@ import org.springframework.hateoas.Resources;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
-@FeignClient(name = "classroom-school")
+@FeignClient(name = "classroomschool")
 public interface ClassroomClassTypeResource {
 
     @GetMapping(value = "classroomClassTypes/{id}?projection=all")

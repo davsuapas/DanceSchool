@@ -6,7 +6,7 @@ import org.springframework.hateoas.Resource;
 import org.springframework.hateoas.Resources;
 import org.springframework.web.bind.annotation.*;
 
-@FeignClient(name = "classroom-school")
+@FeignClient(name = "classroomschool")
 public interface ClassTypeResource {
 
     @GetMapping(value = "classTypes/{id}")

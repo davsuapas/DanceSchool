@@ -6,3 +6,20 @@ curl -X POST -H "Content-Type: application/json" -d '{"classId":1,"customerId":1
 
 sudo systemctl start kafka
 sudo systemctl start mongod
+
+Config
+------
+
+· The config server does not complain to start if you configure wrong Git uri. The clients will fail when they try to fetch the configuration. To avoid this, always enable clone-on-start property, so that you will realize the mistakes before it’s too late.
+
+spring.cloud.config.server.git.clone-on-start=true
+
+· The config server uses a temporary location(/temp) on the file system to clone the repository and refers the same all the time. The linux machines temporarily cleans this directory and the config server never fetches the configuration again.
+
+It is going to be very difficult to diagnose the issue when you have multiple instances of config servers. You can override the cloning directory using the basedir property.
+
+spring.cloud.config.server.git.basedir=/opt/yourconfigrepo
+
+· Also, make force-pull value to true to make sure the server fetches the configuration when the local repository is corrupted.
+
+spring.cloud.config.server.git.force-pull=true

@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 
-@FeignClient(name = "classcustomer-school")
+@FeignClient(name = "classcustomerschool")
 public interface CustomerClassResource {
 
     @PostMapping(value = "classcustomers/registers")
