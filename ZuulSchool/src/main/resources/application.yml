@@ -7,7 +7,7 @@ spring:
 zuul:
   ignored-services: '*'
   routes:
-    customer-school: /customerproxy/**
+    customerschool: /customerproxy/**
     classroomschool: /classroomproxy/**
     classcustomerschool: /classcustomerproxy/**
     classcustomerviewschool: /classcustomerviewproxy/**

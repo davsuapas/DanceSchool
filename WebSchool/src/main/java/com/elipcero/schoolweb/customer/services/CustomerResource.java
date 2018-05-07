@@ -7,7 +7,7 @@ import org.springframework.hateoas.Resource;
 import org.springframework.hateoas.Resources;
 import org.springframework.web.bind.annotation.*;
 
-@FeignClient(name = "customer-school")
+@FeignClient(name = "customerschool")
 public interface CustomerResource {
 	
     @GetMapping(value = "customers/search/secondName?secondName={secondName}&projection=descriptor")
