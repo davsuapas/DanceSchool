@@ -7,7 +7,6 @@ spring:
       server:
         git:
           uri: https://github.com/DanceSchoolMicroservices/{application}
-          clone-on-start: true
           force-pull: true
           username: DanceSchoolMicroservices
           password: DanceSchool8MS!

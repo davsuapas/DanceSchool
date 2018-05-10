@@ -10,6 +10,8 @@ sudo systemctl start mongod
 Config
 ------
 
+MySql: 1234
+
 · The config server does not complain to start if you configure wrong Git uri. The clients will fail when they try to fetch the configuration. To avoid this, always enable clone-on-start property, so that you will realize the mistakes before it’s too late.
 
 spring.cloud.config.server.git.clone-on-start=true
