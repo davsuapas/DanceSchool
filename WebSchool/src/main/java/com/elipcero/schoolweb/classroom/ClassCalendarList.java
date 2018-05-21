@@ -23,7 +23,7 @@ import java.util.List;
 @AllArgsConstructor
 public class ClassCalendarList {
 
-	private static final String REDIRECT_CLASSCALENDAR_LIST = "redirect:/classcalendar/list";
+	public static final String REDIRECT_CLASSCALENDAR_LIST = "redirect:/classcalendar/list";
 	private static final String CLASSROOM_CLASS_CALENDAR_LIST = "classroom/classcalendar-list";
 
 	private @NotNull final ClassCalendarService classCalendarService;
@@ -40,8 +40,12 @@ public class ClassCalendarList {
 		return "classroom/classcalendar-list-for-select";
 	}
 
+	@ExceptionController(
+			viewName=REDIRECT_CLASSCALENDAR_LIST,
+			messages="400;Existen problemas de comunicación. Inténtelo más tarde"
+	)
 	@GetMapping(value="/{id}")
-	public String getClassCalendarById(@PathVariable int id, Model model) {
+	public String getClassCalendarById(@PathVariable int id, Model model, RedirectAttributes redirectAttr) {
 		ClassCalendarView classCalendar = this.classCalendarService.getClassCalendarById(id);
 		FillModel(model, classCalendar);
 		return CLASSROOM_CLASS_CALENDAR_LIST;

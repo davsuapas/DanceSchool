@@ -6,12 +6,14 @@ import com.elipcero.schoolweb.classroom.services.ClassTypeService;
 import com.elipcero.schoolweb.classroom.services.ClassroomService;
 import com.elipcero.schoolweb.shared.domain.ToolbarBuilder;
 import com.elipcero.schoolweb.shared.domain.ToolbarDomain;
+import com.elipcero.schoolweb.shared.web.ExceptionController;
 import lombok.AllArgsConstructor;
 import lombok.NonNull;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
@@ -35,8 +37,12 @@ public class ClassCalendarEdit {
 		return VIEWNAME_CLASSCALENDAR_EDIT;
 	}
 
+	@ExceptionController(
+			viewName=ClassCalendarList.REDIRECT_CLASSCALENDAR_LIST,
+			messages="400;Existen problemas de comunicación. Inténtelo más tarde"
+	)
 	@GetMapping(value="/update/{id}")
-	public String update(Model model, @PathVariable int id) {
+	public String update(Model model, @PathVariable int id, RedirectAttributes redirectAttr) {
 		ToolbarBuilder.Fill(model, ToolbarDomain.EnumMenuOption.Classroom);
 		model.addAttribute("classCalendar", classCalendarService.getClassCalendarById(id).convertToEdition());
 		return VIEWNAME_CLASSCALENDAR_EDIT;

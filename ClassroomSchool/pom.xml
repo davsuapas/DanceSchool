@@ -60,6 +60,10 @@
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-hystrix</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-openfeign</artifactId>
 		</dependency>
 
@@ -88,7 +92,12 @@
             <artifactId>core-school</artifactId>
             <version>1.0.0</version>
         </dependency>
-	</dependencies>
+        <dependency>
+            <groupId>com.netflix.hystrix</groupId>
+            <artifactId>hystrix-javanica</artifactId>
+            <version>RELEASE</version>
+        </dependency>
+    </dependencies>
 
 	<dependencyManagement>
 		<dependencies>
