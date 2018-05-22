@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: hystrixdashboardschool
+  profiles:
+    active: development
+
+  cloud:
+    config:
+      discovery:
+        enabled: true
+        serviceId: configurationschool
