@@ -6,6 +6,9 @@ sudo systemctl start mongod
 
 gnome-terminal -x sh -c 'cd ./EurekaSchool && mvn spring-boot:run'
 gnome-terminal -x sh -c 'cd ./ConfigurationSchool && mvn spring-boot:run'
+sleep 20
+gnome-terminal -x sh -c 'cd ./TurbineStreamSchool && mvn spring-boot:run'
+gnome-terminal -x sh -c 'cd ./HystrixDashboardSchool && mvn spring-boot:run'
 gnome-terminal -x sh -c 'cd ./ZuulSchool && mvn spring-boot:run'
 gnome-terminal -x sh -c 'cd ./CustomerSchool && mvn spring-boot:run'
 gnome-terminal -x sh -c 'cd ./ClassroomSchool && mvn spring-boot:run'

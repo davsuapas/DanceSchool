@@ -25,3 +25,8 @@ spring.cloud.config.server.git.basedir=/opt/yourconfigrepo
 · Also, make force-pull value to true to make sure the server fetches the configuration when the local repository is corrupted.
 
 spring.cloud.config.server.git.force-pull=true
+
+
+Dashboard: http://localhost:8763/
+Turbine:
+ http://localhost:8989/turbine/turbine.stream

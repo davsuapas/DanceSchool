@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.TimeoutException;
 import java.util.stream.Collectors;
 
 @Service
@@ -30,7 +31,10 @@ public class ClassCalendarReaderService {
         List<ClassCalendarView> calendars = new ArrayList<>();
 
         for (ClassCalendar calendar : classCalendarRepository.findAll()) {
-            calendars.add(buildClassCalendarView(calendar));
+            ClassCalendarView classCalendarView = buildClassCalendarView(calendar);
+            if (classCalendarView != null) {
+                calendars.add(buildClassCalendarView(calendar));
+            }
         }
         return calendars;
     }
@@ -47,30 +51,36 @@ public class ClassCalendarReaderService {
                                 .getId())).get().getClassMax())
                 .build();
 
-        ClassCustomerDayTotal daysSummary = getCalendarSummaryByClassId(calendar);
-        calendarView.setClassCalendarDayView(
-            calendar.getClassCalendarDay().stream().map(d -> {
-                int numberOfStudents = 0;
-                if (daysSummary != null) {
-                    switch (d.getDayOfWeek()) {
-                        case MONDAY: numberOfStudents = daysSummary.getCustomerTotalDay1(); break;
-                        case TUESDAY: numberOfStudents = daysSummary.getCustomerTotalDay2(); break;
-                        case WEDNESDAY: numberOfStudents = daysSummary.getCustomerTotalDay3(); break;
-                        case THURSDAY: numberOfStudents = daysSummary.getCustomerTotalDay4(); break;
-                        case FRIDAY: numberOfStudents = daysSummary.getCustomerTotalDay5(); break;
-                        case SATURDAY: numberOfStudents = daysSummary.getCustomerTotalDay6(); break;
-                        case SUNDAY: numberOfStudents = daysSummary.getCustomerTotalDay7(); break;
-                    }
-                }
-                return ClassCalendarDayView.builder()
-                        .dayOfWeek(d.getDayOfWeek())
-                        .numberOfStudents(numberOfStudents)
-                        .build();
-        }).collect(Collectors.toList()));
+        try {
+            ClassCustomerDayTotal daysSummary = getCalendarSummaryByClassId(calendar);
+            calendarView.setClassCalendarDayView(
+                    calendar.getClassCalendarDay().stream().map(d -> {
+                        int numberOfStudents = 0;
+                        if (daysSummary != null) {
+                            switch (d.getDayOfWeek()) {
+                                case MONDAY: numberOfStudents = daysSummary.getCustomerTotalDay1(); break;
+                                case TUESDAY: numberOfStudents = daysSummary.getCustomerTotalDay2(); break;
+                                case WEDNESDAY: numberOfStudents = daysSummary.getCustomerTotalDay3(); break;
+                                case THURSDAY: numberOfStudents = daysSummary.getCustomerTotalDay4(); break;
+                                case FRIDAY: numberOfStudents = daysSummary.getCustomerTotalDay5(); break;
+                                case SATURDAY: numberOfStudents = daysSummary.getCustomerTotalDay6(); break;
+                                case SUNDAY: numberOfStudents = daysSummary.getCustomerTotalDay7(); break;
+                            }
+                        }
+                        return ClassCalendarDayView.builder()
+                                .dayOfWeek(d.getDayOfWeek())
+                                .numberOfStudents(numberOfStudents)
+                                .build();
+                    }).collect(Collectors.toList()));
+        }
+        catch (TimeoutException timeout) {
+            calendarView = null;
+        }
+
         return calendarView;
     }
 
-    private ClassCustomerDayTotal getCalendarSummaryByClassId(ClassCalendar calendar) {
+    private ClassCustomerDayTotal getCalendarSummaryByClassId(ClassCalendar calendar) throws TimeoutException {
         try {
             return resource.getCalendarSummaryByClassId(calendar.getId()).getContent();
         }
