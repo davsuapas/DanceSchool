@@ -11,6 +11,7 @@ Dance School Project (Spring Cloud Netflix)
 - Open Feign
 - Spring Cloud Stream (Kafka)
 - Spring Web
+- Spring AOP
 - Spring Data Rest
 - Spring JPA (Hibernate)
 - MySql
