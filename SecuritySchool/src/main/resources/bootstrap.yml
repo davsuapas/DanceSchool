@@ -9,8 +9,3 @@ spring:
       discovery:
         enabled: true
         serviceId: configurationschool
-
-security:
-  oauth2:
-    resource:
-      filter-order: 5

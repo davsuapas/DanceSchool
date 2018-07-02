@@ -7,8 +7,8 @@ import org.springframework.security.config.BeanIds;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
 @EnableWebSecurity
@@ -17,24 +17,31 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
-        User.UserBuilder users = User.withDefaultPasswordEncoder(); // For demos
-        InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
-        manager.createUser(users.username("user").password("password").roles("USER").build());
-        manager.createUser(users.username("admin").password("password").roles("USER","ADMIN").build());
-
         //@formatter:off
         http
+            .requestMatchers() // Only requests login matching are handled by this security configurer
+                .antMatchers("/login/**", "/oauth/**")
+            .and()
                 .authorizeRequests()
-                .anyRequest().authenticated()
-                .and()
-                .userDetailsService(manager)
-                .formLogin();
+                    .antMatchers("/login/login*").permitAll()
+                    .anyRequest().authenticated()
+            .and()
+                .formLogin()
+                    .loginPage("/login/login.html")
+                    .loginProcessingUrl("/login/loginProcess")
+                    .failureUrl("/login/login.html?error=true");
         //@formatter:on
     }
+
 
     @Bean(name = BeanIds.AUTHENTICATION_MANAGER)
     @Override
     public AuthenticationManager authenticationManagerBean() throws Exception {
         return super.authenticationManagerBean();
+    }
+
+    @Bean
+    public PasswordEncoder encoder() {
+        return new BCryptPasswordEncoder();
     }
 }

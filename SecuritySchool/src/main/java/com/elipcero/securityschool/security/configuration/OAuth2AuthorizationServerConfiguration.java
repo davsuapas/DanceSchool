@@ -42,9 +42,9 @@ public class OAuth2AuthorizationServerConfiguration extends AuthorizationServerC
 
     @Bean
     JwtAccessTokenConverter jwtAccessTokenConverter() {
-        JwtAccessTokenConverter jwtAccessTokenConverter = new JwtAccessTokenConverter();
-        jwtAccessTokenConverter.setSigningKey("1234");
-        return jwtAccessTokenConverter;
+        JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
+        converter.setSigningKey("123");
+        return converter;
     }
 
     @Bean
