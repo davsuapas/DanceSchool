@@ -27,6 +27,16 @@ spring.cloud.config.server.git.basedir=/opt/yourconfigrepo
 spring.cloud.config.server.git.force-pull=true
 
 
+---------
+spring install org.springframework.cloud:spring-cloud-cli:1.3.2.RELEASE
+Now it is possible to encrypt the value “mysecret” with the key “foo”:
+
+spring encrypt mysecret --key foo
+The return value of this command is the encrypted property and we can add it to application.properties:
+
+encrypted.property={cipher}711448026e2c6a977b2be1b22f13649cc938366397fbd345113d2a50e27c348f
+-----------------
+
 Dashboard: http://localhost:8763/
 Turbine:
  http://localhost:8989/turbine/turbine.stream

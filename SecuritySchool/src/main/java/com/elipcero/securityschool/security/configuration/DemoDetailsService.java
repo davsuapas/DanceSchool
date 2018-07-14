@@ -14,13 +14,12 @@ import java.util.Map;
 @Service
 public class DemoDetailsService implements UserDetailsService {
 
-    private final PasswordEncoder passwordEncoder;
     private final Map<String, User> usersInfo = new HashMap<>();
 
     DemoDetailsService(PasswordEncoder passwordEncoder) {
-        this.passwordEncoder = passwordEncoder;
-        usersInfo.put("admin", new User("admin", "password", true, true, true, true, AuthorityUtils.createAuthorityList("ADMIN", "USER")));
-        usersInfo.put("user", new User("user", "password", true, true, true, true, AuthorityUtils.createAuthorityList("USER")));
+        String pass = passwordEncoder.encode("password");
+        usersInfo.put("admin", new User("admin", pass, true, true, true, true, AuthorityUtils.createAuthorityList("ADMIN", "USER")));
+        usersInfo.put("user", new User("user", pass, true, true, true, true, AuthorityUtils.createAuthorityList("USER")));
     }
 
     @Override

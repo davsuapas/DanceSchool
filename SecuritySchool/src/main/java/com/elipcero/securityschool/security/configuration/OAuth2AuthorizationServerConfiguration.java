@@ -25,7 +25,7 @@ public class OAuth2AuthorizationServerConfiguration extends AuthorizationServerC
         clients
                 .inMemory()
                 .withClient("client-school")
-                .secret("secret")
+                .secret("$2a$10$HocmvB6.uN4TRUw4MMy3puto7AGjIv4adDpRv.DwgvtXd0wYf9OOu") // password
                 .authorizedGrantTypes("authorization_code")
                 .autoApprove(true)
                 .scopes("profile");
@@ -33,7 +33,7 @@ public class OAuth2AuthorizationServerConfiguration extends AuthorizationServerC
     }
 
     @Override
-    public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
+    public void configure(AuthorizationServerEndpointsConfigurer endpoints) {
         endpoints
                 .tokenStore(this.tokenStore())
                 .accessTokenConverter(jwtAccessTokenConverter())
