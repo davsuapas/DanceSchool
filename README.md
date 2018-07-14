@@ -10,10 +10,11 @@ Dance School Project (Spring Cloud Netflix)
 - Event sourcing and CQRS
 - Open Feign
 - Spring Cloud Stream (Kafka)
-- Spring Web
+- Spring MVC
 - Spring AOP
 - Spring Data Rest
 - Spring JPA (Hibernate)
+- Spring Data MongoDb
 - MySql
 - Mongo DB
 - Kafka
