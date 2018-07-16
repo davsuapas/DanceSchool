@@ -32,7 +32,7 @@
 	    			<a href="/customer/list" class="sch-toolbar-link">
 						<span class="mdc-toolbar__title" th:classappend="${toolbar.isCustomer()} ? 'sch-toolbar-item-selected' : ''">CLIENTES</span>
 					</a>
-	    			<a href="/classtype/list" class="sch-toolbar-link sch-toolbar-title">
+	    			<a href="/classtype/list" sec:authorize="hasRole('ADMIN')" class="sch-toolbar-link sch-toolbar-title">
 	    				<span class="mdc-toolbar__title" th:classappend="${toolbar.isClassroom()} ? 'sch-toolbar-item-selected' : ''">AULAS</span>
 					</a>
 	    			<a href="/invoice/list" class="sch-toolbar-link sch-toolbar-title">
