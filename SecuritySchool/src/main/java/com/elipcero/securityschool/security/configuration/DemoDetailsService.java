@@ -18,8 +18,8 @@ public class DemoDetailsService implements UserDetailsService {
 
     DemoDetailsService(PasswordEncoder passwordEncoder) {
         String pass = passwordEncoder.encode("password");
-        usersInfo.put("admin", new User("admin", pass, true, true, true, true, AuthorityUtils.createAuthorityList("ADMIN", "USER")));
-        usersInfo.put("user", new User("user", pass, true, true, true, true, AuthorityUtils.createAuthorityList("USER")));
+        usersInfo.put("admin", new User("admin", pass, true, true, true, true, AuthorityUtils.createAuthorityList("ROLE_ADMIN", "ROLE_USER")));
+        usersInfo.put("user", new User("user", pass, true, true, true, true, AuthorityUtils.createAuthorityList("ROLE_USER")));
     }
 
     @Override

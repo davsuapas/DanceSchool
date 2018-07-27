@@ -1,9 +1,13 @@
 package com.elipcero.schoolweb.configuration;
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.oauth2.provider.token.TokenStore;
+import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
+import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
@@ -17,12 +21,26 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/logout").permitAll()
                 .anyRequest().authenticated()
                 .and()
-                    .oauth2Login()
-                .and()
                     .logout()
-                    .logoutRequestMatcher(new AntPathRequestMatcher("/logout")) // For demos.
-                    .clearAuthentication(true)
-                    .invalidateHttpSession(true)
-                    .deleteCookies("auth_code", "JSESSIONID");
+                        .logoutRequestMatcher(new AntPathRequestMatcher("/logout")) // For demos.
+                        .clearAuthentication(true)
+                        .invalidateHttpSession(true)
+                        .deleteCookies("auth_code", "JSESSIONID")
+                .and()
+                    .oauth2Login()
+                        .userInfoEndpoint()
+                            .userService(new OAuthUserService(tokenStore()));
+    }
+
+    @Bean
+    JwtAccessTokenConverter jwtAccessTokenConverter() {
+        JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
+        converter.setSigningKey("123");
+        return converter;
+    }
+
+    @Bean
+    TokenStore tokenStore() {
+        return new JwtTokenStore(this.jwtAccessTokenConverter());
     }
 }
