@@ -1,10 +1,12 @@
 package com.elipcero.schoolweb.configuration;
 
+import feign.RequestInterceptor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.oauth2.client.OAuth2AuthorizedClientService;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
 import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
@@ -42,5 +44,10 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Bean
     TokenStore tokenStore() {
         return new JwtTokenStore(this.jwtAccessTokenConverter());
+    }
+
+    @Bean
+    public RequestInterceptor oauth2FeignRequestInterceptor(OAuth2AuthorizedClientService oAuth2AuthorizedClientService) {
+        return new OAuth2FeignInterceptor(oAuth2AuthorizedClientService);
     }
 }
