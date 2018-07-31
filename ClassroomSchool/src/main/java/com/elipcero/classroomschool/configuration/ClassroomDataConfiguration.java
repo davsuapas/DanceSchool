@@ -1,24 +1,23 @@
-package com.elipcero.classroomschool;
+package com.elipcero.classroomschool.configuration;
 
+import com.elipcero.classroomschool.Application;
 import com.elipcero.classroomschool.domains.ClassCalendar;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.domain.EntityScan;
-import org.springframework.context.annotation.Bean;
-
-import org.springframework.context.annotation.Configuration;
-import org.springframework.data.jpa.convert.threeten.Jsr310JpaConverters;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
-import org.springframework.data.rest.webmvc.config.RepositoryRestConfigurerAdapter;
-
 import com.elipcero.classroomschool.domains.ClassType;
 import com.elipcero.classroomschool.domains.Classroom;
 import com.elipcero.classroomschool.repositories.ClassTypeRepository;
 import com.elipcero.classroomschool.repositories.ClassroomClassTypeEventHandler;
 import com.elipcero.classroomschool.repositories.ClassroomRepository;
 import com.elipcero.classroomschool.web.ClassroomClassTypeIdConvert;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.data.jpa.convert.threeten.Jsr310JpaConverters;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
+import org.springframework.data.rest.webmvc.config.RepositoryRestConfigurerAdapter;
 
 @Configuration
 @EnableJpaRepositories("com.elipcero.classroomschool.repositories")
