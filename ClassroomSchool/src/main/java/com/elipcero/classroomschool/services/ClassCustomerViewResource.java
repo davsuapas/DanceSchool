@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.concurrent.TimeoutException;
 
-@FeignClient(name = "classcustomerviewschool", fallback = ClassCustomerViewResourceFallback.class)
+@FeignClient(name = "classcustomerviewschool"/*, fallback = ClassCustomerViewResourceFallback.class*/)
 public interface ClassCustomerViewResource {
 
     @GetMapping(value = "classCustomerDayTotals/{id}")
