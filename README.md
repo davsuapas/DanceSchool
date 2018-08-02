@@ -18,10 +18,10 @@ Dance School Project (Spring Cloud Netflix)
 - MySql
 - Mongo DB
 - Kafka
+- Spring Security (oauth2)
 
 The next: 
 
-- Spring Security (oauth2)
-- Spring Cloud Pipeline (Kubernete)
 - Spring Cloud Contract
+- Spring Cloud Pipeline (Kubernete)
 - Kubernete
