@@ -32,13 +32,18 @@
 	    			<a href="/customer/list" class="sch-toolbar-link">
 						<span class="mdc-toolbar__title" th:classappend="${toolbar.isCustomer()} ? 'sch-toolbar-item-selected' : ''">CLIENTES</span>
 					</a>
-	    			<a href="/classtype/list" class="sch-toolbar-link sch-toolbar-title">
+	    			<a href="/classtype/list" sec:authorize="hasRole('ROLE_ADMIN')" class="sch-toolbar-link sch-toolbar-title">
 	    				<span class="mdc-toolbar__title" th:classappend="${toolbar.isClassroom()} ? 'sch-toolbar-item-selected' : ''">AULAS</span>
 					</a>
 	    			<a href="/invoice/list" class="sch-toolbar-link sch-toolbar-title">
 	    				<span class="mdc-toolbar__title" th:classappend="${toolbar.isInvoice()} ? 'sch-toolbar-item-selected' : ''">FACTURAS</span>
 					</a>
-	    			<span class="material-icons sch-toolbar-title">cloud_off</span>
+					<a href="/logout" class="sch-toolbar-link">
+						<span class="material-icons sch-toolbar-title">cloud_off</span>
+					</a>
+					<span class="mdc-toolbar__title sch-toolbar-title sch-user">(</span>
+					<span class="mdc-toolbar__title sch-user" sec:authentication="name">Name</span>
+					<span class="mdc-toolbar__title sch-user">)</span>
 	    		</section>
 	  		</div>
 			<div class="mdc-snackbar"
