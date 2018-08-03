@@ -108,9 +108,16 @@ a {
 	width: 98%
 }
 
-/* buttons*/
+/* buttons */
 .sch-button-link {
 	border: none;
 	background: transparent;
 }
+
+/* CoverPage */
+.sch-cover-page {
+	width: 99%;
+	height: 100%;
+}​
+
 
