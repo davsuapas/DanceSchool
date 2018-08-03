@@ -20,7 +20,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/logout").permitAll()
+                .antMatchers("/logout", "/oauth_login").permitAll()
                 .anyRequest().authenticated()
                 .and()
                     .logout()
@@ -30,6 +30,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                         .deleteCookies("auth_code", "JSESSIONID")
                 .and()
                     .oauth2Login()
+                        .loginPage("/oauth_login")
                         .userInfoEndpoint()
                             .userService(new OAuthUserService(tokenStore()));
     }
