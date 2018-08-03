@@ -1,4 +1,4 @@
-package com.elipcero.classcustomerviewschool;
+package com.elipcero.classcustomerviewschool.configuration;
 
 import com.elipcero.classcustomerviewschool.domain.Classes;
 import com.elipcero.classcustomerviewschool.domain.CustomerClass;

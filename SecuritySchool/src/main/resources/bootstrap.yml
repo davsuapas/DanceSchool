@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: securityschool
+  profiles:
+    active: development
+
+  cloud:
+    config:
+      discovery:
+        enabled: true
+        serviceId: configurationschool
