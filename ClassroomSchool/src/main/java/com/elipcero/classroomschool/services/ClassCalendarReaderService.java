@@ -3,16 +3,14 @@ package com.elipcero.classroomschool.services;
 import com.elipcero.classroomschool.domains.*;
 import com.elipcero.classroomschool.repositories.ClassCalendarRepository;
 import com.elipcero.classroomschool.repositories.ClassroomClassTypeRepository;
-import feign.FeignException;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
+import org.springframework.hateoas.Resource;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.concurrent.TimeoutException;
 import java.util.stream.Collectors;
 
 @Service
@@ -51,46 +49,32 @@ public class ClassCalendarReaderService {
                                 .getId())).get().getClassMax())
                 .build();
 
-        try {
-            ClassCustomerDayTotal daysSummary = getCalendarSummaryByClassId(calendar);
-            calendarView.setClassCalendarDayView(
-                    calendar.getClassCalendarDay().stream().map(d -> {
-                        int numberOfStudents = 0;
-                        if (daysSummary != null) {
-                            switch (d.getDayOfWeek()) {
-                                case MONDAY: numberOfStudents = daysSummary.getCustomerTotalDay1(); break;
-                                case TUESDAY: numberOfStudents = daysSummary.getCustomerTotalDay2(); break;
-                                case WEDNESDAY: numberOfStudents = daysSummary.getCustomerTotalDay3(); break;
-                                case THURSDAY: numberOfStudents = daysSummary.getCustomerTotalDay4(); break;
-                                case FRIDAY: numberOfStudents = daysSummary.getCustomerTotalDay5(); break;
-                                case SATURDAY: numberOfStudents = daysSummary.getCustomerTotalDay6(); break;
-                                case SUNDAY: numberOfStudents = daysSummary.getCustomerTotalDay7(); break;
-                            }
+        ClassCustomerDayTotal daysSummary = getCalendarSummaryByClassId(calendar);
+        calendarView.setClassCalendarDayView(
+                calendar.getClassCalendarDay().stream().map(d -> {
+                    int numberOfStudents = 0;
+                    if (daysSummary != null) {
+                        switch (d.getDayOfWeek()) {
+                            case MONDAY: numberOfStudents = daysSummary.getCustomerTotalDay1(); break;
+                            case TUESDAY: numberOfStudents = daysSummary.getCustomerTotalDay2(); break;
+                            case WEDNESDAY: numberOfStudents = daysSummary.getCustomerTotalDay3(); break;
+                            case THURSDAY: numberOfStudents = daysSummary.getCustomerTotalDay4(); break;
+                            case FRIDAY: numberOfStudents = daysSummary.getCustomerTotalDay5(); break;
+                            case SATURDAY: numberOfStudents = daysSummary.getCustomerTotalDay6(); break;
+                            case SUNDAY: numberOfStudents = daysSummary.getCustomerTotalDay7(); break;
                         }
-                        return ClassCalendarDayView.builder()
-                                .dayOfWeek(d.getDayOfWeek())
-                                .numberOfStudents(numberOfStudents)
-                                .build();
-                    }).collect(Collectors.toList()));
-        }
-        catch (TimeoutException timeout) {
-            calendarView = null;
-        }
+                    }
+                    return ClassCalendarDayView.builder()
+                            .dayOfWeek(d.getDayOfWeek())
+                            .numberOfStudents(numberOfStudents)
+                            .build();
+                }).collect(Collectors.toList()));
 
         return calendarView;
     }
 
-    private ClassCustomerDayTotal getCalendarSummaryByClassId(ClassCalendar calendar) throws TimeoutException {
-        try {
-            return resource.getCalendarSummaryByClassId(calendar.getId()).getContent();
-        }
-        catch (FeignException ex) {
-            if (ex.status() == HttpStatus.NOT_FOUND.value()) {
-                return null;
-            }
-            else {
-                throw ex;
-            }
-        }
+    private ClassCustomerDayTotal getCalendarSummaryByClassId(ClassCalendar calendar) {
+        Resource<ClassCustomerDayTotal> resourceClassCustomerDayTotal = resource.getCalendarSummaryByClassId(calendar.getId());
+        return resourceClassCustomerDayTotal == null ? null : resourceClassCustomerDayTotal.getContent();
     }
 }

@@ -37,6 +37,6 @@ The return value of this command is the encrypted property and we can add it to 
 encrypted.property={cipher}711448026e2c6a977b2be1b22f13649cc938366397fbd345113d2a50e27c348f
 -----------------
 
-Dashboard: http://localhost:8763/
+Dashboard: http://localhost:8763/hystrix
 Turbine:
  http://localhost:8989/turbine/turbine.stream
