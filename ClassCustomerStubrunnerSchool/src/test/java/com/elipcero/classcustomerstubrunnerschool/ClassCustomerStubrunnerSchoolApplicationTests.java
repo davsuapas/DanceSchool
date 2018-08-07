@@ -1,4 +1,4 @@
-package com.elipcero.classcustomerschool;
+package com.elipcero.classcustomerstubrunnerschool;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -7,7 +7,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class ClassCustomerApplicationTests {
+public class ClassCustomerStubrunnerSchoolApplicationTests {
 
 	@Test
 	public void contextLoads() {

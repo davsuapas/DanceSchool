@@ -1,0 +1,8 @@
+server:
+  port: 8765
+
+stubrunner:
+  cloud:
+    stubbed:
+      discovery:
+        enabled: false
