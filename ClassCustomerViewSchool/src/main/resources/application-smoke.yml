@@ -1,0 +1,17 @@
+spring:
+  data:
+    mongodb:
+      host: localhost
+      database: School-SmokeTest
+  cloud:
+    stream:
+      kafka:
+        binder:
+          brokers: localhost
+          zkNodes: localhost
+      bindings:
+          ClassCustomerEvent:
+            group: classcustomerview
+
+stubrunner:
+  url: http://localhost:8765
