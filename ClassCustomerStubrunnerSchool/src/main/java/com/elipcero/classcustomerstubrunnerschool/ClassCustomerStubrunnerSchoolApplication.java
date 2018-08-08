@@ -7,15 +7,14 @@ import org.springframework.cloud.contract.stubrunner.spring.AutoConfigureStubRun
 import org.springframework.cloud.stream.annotation.EnableBinding;
 import org.springframework.cloud.stream.test.binder.TestSupportBinderAutoConfiguration;
 
-@SpringBootApplication(exclude = TestSupportBinderAutoConfiguration.class)
+@SpringBootApplication( exclude = { TestSupportBinderAutoConfiguration.class })
 @EnableStubRunnerServer
 @EnableBinding
+@AutoConfigureStubRunner
 public class ClassCustomerStubrunnerSchoolApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(ClassCustomerStubrunnerSchoolApplication.class, args);
 	}
 
-	@AutoConfigureStubRunner
-	static class Config {}
 }
