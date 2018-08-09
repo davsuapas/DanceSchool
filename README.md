@@ -55,7 +55,7 @@ The next:
 - Install MySql
 - Install Kafka
 - Install MongoDB
-- Clone all repository (except https://github.com/DanceSchoolMicroservices) include this at the same root
+- Clone all repository include this at the same root (except https://github.com/DanceSchoolMicroservices)
 - Create Username into MySql called schoolservice and password 1234
 - Create Database into MySql called school
 - Execute run.sh and wait (minimal 12 Gb memory)
