@@ -1,7 +1,0 @@
-spring:
-  application:
-    name: configurationschool
-
-encrypt:
-  key: 123456
-
