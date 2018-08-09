@@ -35,7 +35,6 @@ The next:
 # Projects
 
 - https://github.com/DanceSchoolMicroservices -> Configuration
-
 - https://github.com/davsuapas/DanceSchool-EurekaSchool
 - https://github.com/davsuapas/DanceSchool-ZuulSchool
 - https://github.com/davsuapas/DanceSchool-TurbineStreamSchool
