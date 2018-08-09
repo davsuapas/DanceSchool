@@ -40,3 +40,8 @@ encrypted.property={cipher}711448026e2c6a977b2be1b22f13649cc938366397fbd345113d2
 Dashboard: http://localhost:8763/hystrix
 Turbine:
  http://localhost:8989/turbine/turbine.stream
+
+ ---------------------
+
+ Spring contract generate stubs
+ mvn clean install -DskipTests

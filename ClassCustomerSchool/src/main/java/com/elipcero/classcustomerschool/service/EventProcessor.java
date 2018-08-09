@@ -3,7 +3,6 @@ package com.elipcero.classcustomerschool.service;
 import com.elipcero.classcustomerschool.domain.ClassCustomerEvent;
 import com.elipcero.classcustomerschool.domain.ClassCustomerIdProjection;
 import com.elipcero.classcustomerschool.message.ClassCustomerSource;
-import com.elipcero.classcustomerschool.message.Converter;
 import com.elipcero.schoolcore.eventsourcing.Event;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,7 +11,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.stream.annotation.EnableBinding;
 import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.data.mongodb.core.query.Update;
-import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
@@ -36,6 +34,7 @@ public class EventProcessor {
 
     private final MongoOperations mongo;
     private final ClassCustomerSource source;
+    private final EventSender eventSender;
 
     private final Logger log = LoggerFactory.getLogger(this.getClass());
 
@@ -46,6 +45,7 @@ public class EventProcessor {
 
         this.mongo = mongo;
         this.source = source;
+        this.eventSender = new EventSender(source);
     }
 
     @Scheduled(fixedDelay = 5000, initialDelay = 5000)
@@ -60,28 +60,23 @@ public class EventProcessor {
                     ClassCustomerEvent.class);
 
             for (ClassCustomerEvent event : events) {
-                SendingMessage(event);
+                if (eventSender.sendingMessage(event)) {
+                    markAsPublished(event);
+                    this.log.info("Event sent: {}", event.toString());
+                }
             }
         } catch (Exception ex) {
             this.log.error("General error for sending messages: {}", ex.toString());
         }
     }
 
-    private void SendingMessage(ClassCustomerEvent event) {
-        try {
-            if (this.source.output().send(
-                MessageBuilder.withPayload(Converter.convertToClassCustomerMessage(event)).build())) {
-                mongo.updateFirst(
-                        query(where(Event.CONST_FIELD_ID).is(event.getId())),
-                        new Update()
-                                .set(Event.CONST_FIELD_PUBLISHED, true)
-                                .set(Event.CONST_FIELD_PUBLICATION_CORRELATION_ID, ""),
-                        ClassCustomerEvent.class);
-                this.log.info("Event sent: {}", event.toString());
-            }
-        } catch (Exception ex) {
-            this.log.error("Sending event: {} with error: {}", event.toString(), ex.toString());
-        }
+    private void markAsPublished(ClassCustomerEvent event) {
+        mongo.updateFirst(
+                query(where(Event.CONST_FIELD_ID).is(event.getId())),
+                new Update()
+                        .set(Event.CONST_FIELD_PUBLISHED, true)
+                        .set(Event.CONST_FIELD_PUBLICATION_CORRELATION_ID, ""),
+                ClassCustomerEvent.class);
     }
 
     private void markEventsToReadConcurrently(UUID correlationId) {

@@ -1,0 +1,24 @@
+spring:
+  cloud:
+    stream:
+      kafka:
+        binder:
+          brokers: localhost
+          zkNodes: localhost
+      default-binder: kafka
+
+stubrunner:
+  stubsMode: LOCAL
+  ids:
+    - com.elipcero.classcustomerschool:classcustomer-school:1.0.0:stubs:8762
+
+eureka:
+  instance:
+    preferIpAddress: true
+  client:
+    hostname: localhost
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+          defaultZone: http://localhost:8761/eureka/
+
