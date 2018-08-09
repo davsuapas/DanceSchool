@@ -1,0 +1,17 @@
+spring:
+  cloud:
+    config:
+      discovery:
+        enabled: false
+      enabled: false
+
+eureka:
+  client:
+    enabled: false
+
+school:
+  classcustomer:
+    eventsourcing:
+      processor:
+        limitForReading: 50
+        lockedMessageMaxTimeInMinutes: 1

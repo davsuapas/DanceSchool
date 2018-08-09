@@ -77,9 +77,14 @@
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-contract-verifier</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-stream-test-support</artifactId>
+			<scope>test</scope>
 		</dependency>
 	</dependencies>
-
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
@@ -102,6 +107,10 @@
 				<groupId>org.springframework.cloud</groupId>
 				<artifactId>spring-cloud-contract-maven-plugin</artifactId>
 				<extensions>true</extensions>
+				<configuration>
+					<baseClassForTests>com.elipcero.classcustomerschool.test.contract.BaseClass</baseClassForTests>
+					<basePackageForTests>com.elipcero.classcustomerschool.test.contract</basePackageForTests>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>

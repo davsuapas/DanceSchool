@@ -1,9 +1,17 @@
+eureka:
+  client:
+    enabled: false
+
 spring:
   data:
     mongodb:
       host: localhost
       database: School-SmokeTest
   cloud:
+    config:
+      discovery:
+        enabled: false
+      enabled: false
     stream:
       kafka:
         binder:
