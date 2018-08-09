@@ -32,7 +32,7 @@ The next:
 - Spring Cloud Pipeline (Kubernete)
 - Kubernete
 
-# Proyectos
+# Projects
 
 - https://github.com/davsuapas/DanceSchool-EurekaSchool
 - https://github.com/davsuapas/DanceSchool-ZuulSchool
@@ -53,6 +53,7 @@ The next:
 - Install MySql
 - Install Kafka
 - Install MongoDB
+- Clone all repository include this at the same root
 - Create Username into MySql called schoolservice and password 1234
 - Create Database into MySql called school
 - Execute run.sh and wait (minimal 12 Gb memory)
