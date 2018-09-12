@@ -60,4 +60,4 @@ The next:
 - Create Username into MySql called schoolservice and password 1234
 - Create Database into MySql called school
 - Execute run.sh and wait (minimal 12 Gb memory)
-- Launch browser at http://localhost:8080 (User: Admin, Password: password or User: user, Password: password)
+- Launch browser at http://localhost:8080 (User: admin, Password: password or User: user, Password: password)
