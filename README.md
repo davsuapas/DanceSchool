@@ -56,7 +56,7 @@ The next:
 - Install Kafka in localhost
 - Install MongoDB in localhost
 - Add '127.0.1.1	school-security' in /etc/hosts
-- Clone all repository include this at the same root (except https://github.com/DanceSchoolMicroservices)
+- Clone all repository including this one at the same root (except https://github.com/DanceSchoolMicroservices)
 - Create Username into MySql called schoolservice and password 1234
 - Create Database into MySql called school
 - Execute run.sh and wait (minimal 12 Gb memory)
