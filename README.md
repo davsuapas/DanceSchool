@@ -48,7 +48,7 @@ The next:
 - https://github.com/davsuapas/DanceSchool-CustomerSchool
 - https://github.com/davsuapas/DanceSchool-WebSchool
 - https://github.com/davsuapas/DanceSchool-CoreSchool
-- https://github.com/davsuapas/DanceSchool-Pipeline
+- https://github.com/davsuapas/DanceSchool-CloudPipeline
 
 # Work without Kubernete (localhost)
 
