@@ -50,6 +50,10 @@ The next:
 - https://github.com/davsuapas/DanceSchool-CoreSchool
 - https://github.com/davsuapas/DanceSchool-CloudPipeline
 
+# Articles
+
+- [a Microservices security with Spring Cloud and how to integrate oauth2 with spring security roles](https://davidsuarez-architecture-development.blogspot.com/2018/09/microservices-security-with-spring.html)
+
 # Work without Kubernete (localhost)
 
 - Install MySql in localhost
