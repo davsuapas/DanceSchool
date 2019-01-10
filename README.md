@@ -25,9 +25,6 @@ Dance School Project (Spring Cloud Netflix)
 - MySql
 - Mongo DB
 - Kafka
-
-The next: 
-
 - Spring Cloud Contract
 - Spring Cloud Pipeline (Kubernete)
 - Kubernete
