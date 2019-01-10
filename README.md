@@ -5,6 +5,10 @@ Dance School Project (Spring Cloud Netflix)
 
 ![Architecture](https://github.com/davsuapas/DanceSchool/blob/master/Architecture.jpg)
 
+## Sample Smoke test
+
+![Architecture](https://github.com/davsuapas/DanceSchool/blob/master/smoketest.png)
+
 - Eureka
 - Spring Cloud Configuration (git)
 - Hystrix Dashboard
