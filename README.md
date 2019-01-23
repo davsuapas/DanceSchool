@@ -54,6 +54,7 @@ Dance School Project (Spring Cloud Netflix)
 # Articles
 
 - [Microservices security with Spring Cloud and how to integrate oauth2 with spring security roles](https://davidsuarez-architecture-development.blogspot.com/2018/09/microservices-security-with-spring.html)
+- [The power of Spring Cloud Pipeline and Spring Cloud Contract to deploy microservices on kubernetes](https://davidsuarez-architecture-development.blogspot.com/2019/01/the-power-of-spring-cloud-pipeline-and.html)
 
 # Work without Kubernete (localhost)
 
@@ -66,3 +67,9 @@ Dance School Project (Spring Cloud Netflix)
 - Create Database into MySql called school
 - Execute run.sh and wait (minimal 12 Gb memory)
 - Launch browser at http://localhost:8080 (User: admin, Password: password or User: user, Password: password)
+
+# Work with Kubernete (minikube)
+
+[Deploy to kuberentes](https://davidsuarez-architecture-development.blogspot.com/2019/01/the-power-of-spring-cloud-pipeline-and.html)
+
+
